@@ -1,0 +1,8 @@
+.promo__nav-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.promo__nav-item:last-child {
+    margin-right: 0px;
+}

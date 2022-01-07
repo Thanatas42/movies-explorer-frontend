@@ -1,0 +1,9 @@
+.lead__content-item_progress-bar {
+    width: 20%;
+    max-height: 67px;
+}
+
+.lead__content-item_progress-bar:last-child {
+    width: 80%;
+    max-height: 67px;
+}

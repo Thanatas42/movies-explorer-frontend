@@ -1,0 +1,7 @@
+.promo {
+    width: calc(100% - 80px);
+    min-height: 495px;
+    margin: 20px auto 0;
+    border-radius: 10px;
+    background-color: #272727;
+}

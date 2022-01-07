@@ -1,0 +1,37 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #202020;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+@import url(./block/header/header.css);
+@import url(./block/header/__logo/header__logo.css);
+@import url(./block/header/__container/header__container.css);
+@import url(./block/header/__button/header__button.css);
+@import url(./block/header/__link/header__link.css);
+
+@import url(./block/promo/promo.css);
+@import url(./block/promo/__tittle/promo__tittle.css);
+@import url(./block/promo/__navbar/promo__navbar.css);
+@import url(./block/promo/__nav-item/promo__nav-item.css);
+@import url(./block/promo/__nav-link/promo__nav-link.css);
+
+@import url(./block/lead/lead.css);
+@import url(./block/lead/__tittle-container/lead__tittle-container.css);
+@import url(./block/lead/__tittle/lead__tittle.css);
+@import url(./block/lead/__content-container/lead__content-container.css);
+@import url(./block/lead/__content-item/lead__content-item.css);
+@import url(./block/lead/__content-container/_progress-bar/lead__content-container_progress-bar.css);
+@import url(./block/lead/__content-item/_progress-bar/lead__content-item_progress-bar.css);

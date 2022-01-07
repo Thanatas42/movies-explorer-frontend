@@ -1,0 +1,11 @@
+.lead__content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(100% - 140px);
+    min-height: 200px;
+    text-align: left;
+    padding: 70px 0 0;
+    margin: auto;
+    list-style-type: none;
+}

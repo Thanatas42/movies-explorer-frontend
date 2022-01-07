@@ -1,0 +1,8 @@
+.lead__tittle-container {
+    width: calc(100% - 140px);
+    min-height: 73px;
+    text-align: left;
+    padding-top: 87px;
+    margin: auto;
+    border-bottom: 1px solid #DADADA;
+}

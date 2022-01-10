@@ -1,4 +1,8 @@
 .promo {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+
     width: calc(100% - 80px);
     min-height: 495px;
     margin: 20px auto 0;

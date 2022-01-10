@@ -1,4 +1,8 @@
 .lead {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+
     position: relative;
     max-width: 1280px;
     min-height: 608px;

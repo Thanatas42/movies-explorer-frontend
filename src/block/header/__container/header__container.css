@@ -1,7 +1,12 @@
 .header__container {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 1.2;
+
     padding: 0 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-    word-spacing: 30px;
 }

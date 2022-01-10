@@ -1,0 +1,8 @@
+.promo__tittle-container {
+    width: calc(100% - 140px);
+    height: 74px;
+    text-align: left;
+    padding-top: 77px;
+    margin: auto;
+    border-bottom: 1px solid #DADADA;
+}

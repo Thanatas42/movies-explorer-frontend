@@ -5,11 +5,11 @@ function Header() {
     return (
         <header className="header">
             <div className='header__container'>
-                <a className="header__logo" href="#top" target="_self"><img src={logo} alt="Проект Movies Explorer" /></a>
+                <a className="header__logo" href="#AboutProject" target="_self"><img src={logo} alt="Проект Movies Explorer" /></a>
             </div>
             <div className='header__container'>
-                <a href="#top" target="_self" className="header__link">Регистрация</a>
-                <button className="header__button" type="button">Войти</button>
+                <a className="header__link" href="#top" target="_self">Регистрация</a>
+                <a className="header__button"  href="#top" target="_self">Войти</a>
             </div>
         </header>
     )

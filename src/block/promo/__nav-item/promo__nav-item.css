@@ -1,6 +1,9 @@
 .promo__nav-item {
     display: inline-block;
     margin-right: 10px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
 }
 
 .promo__nav-item:last-child {

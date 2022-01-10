@@ -15,6 +15,8 @@ code {
     monospace;
 }
 
+@import url(./vendor/normalize.css);
+@import url(./vendor/inter/inter.css);
 
 @import url(./block/header/header.css);
 @import url(./block/header/__logo/header__logo.css);
@@ -35,3 +37,34 @@ code {
 @import url(./block/lead/__content-item/lead__content-item.css);
 @import url(./block/lead/__content-container/_progress-bar/lead__content-container_progress-bar.css);
 @import url(./block/lead/__content-item/_progress-bar/lead__content-item_progress-bar.css);
+@import url(./block/lead/__progress/lead__progress.css);
+@import url(./block/lead/__progress/progress_inactive/lead__progress_inactive.css);
+@import url(./block/lead/progress-description/lead__progress-description.css);
+@import url(./block/lead/__item-tittle/lead__item-tittle.css);
+@import url(./block/lead/__item-text/lead__item-text.css);
+@import url(./block/lead/__navbar/lead__navbar.css);
+
+@import url(./block/promo/_techs/promo_techs.css);
+@import url(./block/promo/__tittle-container/promo__tittle-container.css);
+@import url(./block/promo/__about-tittle/promo__about-tittle.css);
+@import url(./block/promo/__tittle/_techs/promo__tittle_techs.css);
+@import url(./block/promo/__description/promo__description.css);
+@import url(./block/promo/__nav-link/_techs/promo__nav-link_techs.css);
+
+@import url(./block/lead/__content-item/_about-me-text/lead__content-item_about-me-text.css);
+@import url(./block/lead/__content-item/_about-me-photo/lead__content-item_about-me-photo.css);
+@import url(./block/lead/__item-tittle/_about-me/lead__item-tittle_about-me.css);
+@import url(./block/lead/__item-text/_about-me/lead__item-text_about-me.css);
+@import url(./block/lead/__content-container/_about-me/lead__content-container_about-me.css);
+
+@import url(./block/portfolio/portfolio.css);
+@import url(./block/portfolio/__tittle/portfolio__tittle.css);
+@import url(./block/portfolio/__list/portfolio__list.css);
+@import url(./block/portfolio/__item/portfolio__link.css);
+@import url(./block/portfolio/__link/portfolio__link.css);
+
+@import url(./block/footer/footer.css);
+@import url(./block/footer/__tittle/footer__tittle.css);
+@import url(./block/footer/__container/footer__container.css);
+@import url(./block/footer/__list/footer__list.css);
+@import url(./block/footer/__item/footer__item.css);

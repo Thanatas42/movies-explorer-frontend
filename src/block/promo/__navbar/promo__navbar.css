@@ -1,6 +1,14 @@
 .promo__navbar {
-    margin: 0;
-    padding: 0;
+    box-sizing: content-box;
+    margin: auto;
+    padding: 0 0 40px;
     display: inline;
     list-style-type: none;
+}
+
+@media screen and (max-width: 768px) {
+    .promo__navbar {
+        margin: 0;
+        padding-bottom: 30px;
+    }
 }

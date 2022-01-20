@@ -1,0 +1,8 @@
+.portfolio__item {
+    border-bottom: 1px solid #424242;
+    height: 91px;
+}
+
+.portfolio__item:last-child {
+    border-bottom: none;
+}

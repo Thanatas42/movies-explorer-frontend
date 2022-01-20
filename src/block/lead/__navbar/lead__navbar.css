@@ -1,4 +1,13 @@
 .lead__navbar {
-    padding-top: 99px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 99px 0 0;
     list-style-type: none;
+}
+
+@media screen and (max-width: 980px) {
+    .lead__navbar {
+        padding: 40px 0 0;
+    }
 }

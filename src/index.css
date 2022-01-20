@@ -43,6 +43,7 @@ code {
 @import url(./block/lead/__item-tittle/lead__item-tittle.css);
 @import url(./block/lead/__item-text/lead__item-text.css);
 @import url(./block/lead/__navbar/lead__navbar.css);
+@import url(./block/lead/__navlink/lead__navlink.css);
 
 @import url(./block/promo/_techs/promo_techs.css);
 @import url(./block/promo/__tittle-container/promo__tittle-container.css);
@@ -60,7 +61,7 @@ code {
 @import url(./block/portfolio/portfolio.css);
 @import url(./block/portfolio/__tittle/portfolio__tittle.css);
 @import url(./block/portfolio/__list/portfolio__list.css);
-@import url(./block/portfolio/__item/portfolio__link.css);
+@import url(./block/portfolio/__item/portfolio__item.css);
 @import url(./block/portfolio/__link/portfolio__link.css);
 
 @import url(./block/footer/footer.css);
@@ -68,3 +69,4 @@ code {
 @import url(./block/footer/__container/footer__container.css);
 @import url(./block/footer/__list/footer__list.css);
 @import url(./block/footer/__item/footer__item.css);
+@import url(./block/footer/__link/footer__link.css);

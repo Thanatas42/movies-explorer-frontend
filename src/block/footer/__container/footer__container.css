@@ -1,4 +1,8 @@
 .footer__container {
     display: flex;
     justify-content: space-between;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 35px;
+    color: #FFF;
 }

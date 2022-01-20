@@ -1,6 +1,7 @@
 .portfolio__list {
     list-style: none;
     width: 100%;
-    padding: 25px 0 125px;
+    height: 273px;
+    padding: 27px 0 125px;
     margin: auto;
 }

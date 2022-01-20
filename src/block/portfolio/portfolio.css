@@ -1,5 +1,8 @@
 .portfolio {
-    width: 1140px;
-    height: 310px;
+    width: calc(100% - 140px);
+    max-width: 1140px;
     margin: auto;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
 }

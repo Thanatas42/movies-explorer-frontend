@@ -9,3 +9,12 @@
     font-weight: normal;
     color: #FFFFFF;
 }
+
+@media screen and (max-width: 768px) {
+    .promo__tittle {
+        font-size: 40px;
+        line-height: 52px;
+        max-width: calc(100% - 48px);
+        padding: 350px 0 151px;
+    }
+}

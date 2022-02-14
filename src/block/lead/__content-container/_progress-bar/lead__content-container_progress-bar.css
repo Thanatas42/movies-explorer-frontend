@@ -1,4 +1,19 @@
 .lead__content-container_progress-bar {
-    padding: 0;
+    padding: 5px;
     height: 67px;
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__content-container_progress-bar {
+        padding: 35px 0 0;
+        height: 67px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__content-container_progress-bar {
+        padding: 52px 0 0;
+    }
 }

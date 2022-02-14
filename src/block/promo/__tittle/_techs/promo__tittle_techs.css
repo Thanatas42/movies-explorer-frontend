@@ -1,8 +1,23 @@
 .promo__tittle_techs {
-    padding: 90px 0 26px;
+    padding: 60px 0 24px;
     font-weight: normal;
-    font-size: 50px;
-    line-height: 58px;
+    font-size: 30px;
+    line-height: 36px;
     text-align: center;
     letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 768px) {
+    .promo__tittle_techs {
+        font-size: 50px;
+        line-height: 58px;
+        padding: 80px 0 22px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .promo__tittle_techs {
+        padding: 90px 0 23px;
+    }
 }

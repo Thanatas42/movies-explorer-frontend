@@ -51,6 +51,8 @@ code {
 @import url(./block/promo/__tittle/_techs/promo__tittle_techs.css);
 @import url(./block/promo/__description/promo__description.css);
 @import url(./block/promo/__nav-link/_techs/promo__nav-link_techs.css);
+@import url(./block/promo/__navbar/_techs/promo__navbar_techs.css);
+@import url(./block/promo/__nav-item/_techs/promo__nav-item_techs.css);
 
 @import url(./block/lead/__content-item/_about-me-text/lead__content-item_about-me-text.css);
 @import url(./block/lead/__content-item/_about-me-photo/lead__content-item_about-me-photo.css);

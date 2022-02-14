@@ -1,9 +1,16 @@
 .lead__progress-description {
     text-align: center;
     margin: 0;
-    padding-top: 14px;
+    padding-top: 10px;
     font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 11px;
+    line-height: 12px;
     color: #8B8B8B;
+}
+
+@media screen and (min-width: 768px) { 
+    .lead__progress-description {
+        font-size: 14px;
+        line-height: 23px;
+    }
 }

@@ -1,6 +1,22 @@
 .lead__item-text {
     font-weight: normal;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 11px;
+    line-height: 16px;
     margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__item-text {
+        max-width: 319px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__item-text {
+        max-width: 550px;
+        font-size: 14px;
+        line-height: 20px;
+    }
 }

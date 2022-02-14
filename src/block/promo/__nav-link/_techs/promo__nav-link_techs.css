@@ -1,9 +1,17 @@
 .promo__nav-link_techs {
-    width: 90px;
-    height: 60px;
-    line-height: 60px;
-    margin: auto;
-    font-weight: normal;
-    font-size: 14px;
+    width: 84px;
+    height: 57px;
+    margin: 0;
     letter-spacing: -0.04em;
+    font-size: 12px;
+    line-height: 57px;
+}
+
+@media screen and (min-width: 1280px) {
+    .promo__nav-link_techs {
+        width: 90px;
+        height: 60px;
+        font-size: 14px;
+        line-height: 60px;
+    }
 }

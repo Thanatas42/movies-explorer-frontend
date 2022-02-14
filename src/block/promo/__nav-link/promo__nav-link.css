@@ -1,16 +1,15 @@
 .promo__nav-link {
-    display: inline-block;
-    width: 96px;
-    height: 36px;
     color: #FFF;
     text-decoration: none;
-    font-family: Inter;
-    font-style: normal;
     font-weight: 500;
-    font-size: 12px;
-    line-height: 36px;
-    background-color: #303030;
-    border-radius: 10px;
-    border: none;
-    
+    font-size: 10px;
+    width: 100%;
+    display: block;
+}
+
+@media screen and (min-width: 768px) {
+    .promo__nav-link {
+        font-size: 12px;
+        border-radius: 6px;
+    }
 }

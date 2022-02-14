@@ -1,12 +1,17 @@
 .header__container {
     font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 1.2;
-
-    padding: 0 70px;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+    .header__container {
+        font-size: 12px;
+        line-height: 16px;
+    }
 }

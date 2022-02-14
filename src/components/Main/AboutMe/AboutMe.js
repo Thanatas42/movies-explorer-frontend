@@ -20,7 +20,7 @@ function AboutMe() {
                     </ul>
                 </li>
                 <li className="lead__content-item lead__content-item_about-me-photo">
-                    <img src={avatar} alt="альтернативный текст" />
+                    
                 </li>
             </ul>
         </div>

@@ -1,8 +1,30 @@
 .lead__content-item {
-    width: 550px;
-    max-height: 90px;
+    width: 100%;
     color: #DADADA;
-    font-family: 'Inter', Arial, sans-serif;
-    font-style: normal;
-    font-weight: normal;
+    padding-bottom: 58px;
+}
+
+.lead__content-item:last-child {
+    padding-bottom: 52px;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__content-item {
+        padding-right: 30px;
+        width: 50%;
+    }
+
+    .lead__content-item:last-child {
+        padding-right: 0px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__content-item {
+        padding-right: 40px;
+    }
+
+    .lead__content-item:last-child {
+        padding-right: 0px;
+    }
 }

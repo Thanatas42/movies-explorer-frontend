@@ -11,6 +11,8 @@ function Main() {
             <Promo />
             <AboutProject />
             <Techs />
+            <AboutMe />
+            <Portfolio />
         </>
     )
 }

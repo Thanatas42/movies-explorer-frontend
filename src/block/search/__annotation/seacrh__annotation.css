@@ -1,0 +1,14 @@
+.seacrh__annotation {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    line-height: 18px;
+    color: #FFF
+}
+
+@media screen and (min-width: 1280px) {
+    .seacrh__annotation {
+        font-size: 13px;
+        line-height: 18px;
+    }
+}

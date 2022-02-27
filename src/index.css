@@ -39,7 +39,7 @@ code {
 @import url(./block/lead/__content-item/_progress-bar/lead__content-item_progress-bar.css);
 @import url(./block/lead/__progress/lead__progress.css);
 @import url(./block/lead/__progress/progress_inactive/lead__progress_inactive.css);
-@import url(./block/lead/progress-description/lead__progress-description.css);
+@import url(./block/lead/__progress-description/lead__progress-description.css);
 @import url(./block/lead/__item-tittle/lead__item-tittle.css);
 @import url(./block/lead/__item-text/lead__item-text.css);
 @import url(./block/lead/__navbar/lead__navbar.css);
@@ -65,6 +65,7 @@ code {
 @import url(./block/portfolio/__list/portfolio__list.css);
 @import url(./block/portfolio/__item/portfolio__item.css);
 @import url(./block/portfolio/__link/portfolio__link.css);
+@import url(./block/portfolio/__image/portfolio__image.css);
 
 @import url(./block/footer/footer.css);
 @import url(./block/footer/__tittle/footer__tittle.css);
@@ -72,3 +73,16 @@ code {
 @import url(./block/footer/__list/footer__list.css);
 @import url(./block/footer/__item/footer__item.css);
 @import url(./block/footer/__link/footer__link.css);
+@import url(./block/footer/__date/footer__date.css);
+
+@import url(./block/search/search.css);
+@import url(./block/search/__field/search__field.css);
+@import url(./block/search/__input/search__input.css);
+@import url(./block/search/__button/search__button.css);
+@import url(./block/search/__switch/search__switch.css);
+@import url(./block/search/__annotation/seacrh__annotation.css);
+@import url(./block/search/__switch-container/search__switch-container.css);
+
+@import url(./block/cards/cards.css);
+@import url(./block/card/card.css);
+@import url(./block/card/__image/card__image.css);

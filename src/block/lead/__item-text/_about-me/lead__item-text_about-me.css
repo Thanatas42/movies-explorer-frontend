@@ -1,8 +1,26 @@
 .lead__item-text_about-me {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 20px;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 16px;
     color: #FFFFFF;
     mix-blend-mode: normal;
-    padding-bottom: 26px;
+    padding-bottom: 20px;
+    font-style: normal;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__item-text_about-me {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__item-text_about-me {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        padding-bottom: 24px;
+    }
 }

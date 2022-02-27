@@ -1,0 +1,11 @@
+.footer__date {
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .footer__date {
+        font-size: 13px;
+        line-height: 16px;
+        padding: 20px 0 0;
+    }
+}

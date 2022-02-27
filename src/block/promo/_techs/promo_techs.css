@@ -4,6 +4,7 @@
     border-radius: 0;
     min-height: 651px;
     justify-content: flex-start;
+    margin-bottom: 4px;
 }
 
 @media screen and (min-width: 768px) {
@@ -14,7 +15,7 @@
 
 @media screen and (min-width: 1280px) {
     .promo_techs {
-        min-height: 493px;
+        min-height: 625px;
         width: 100%;
     }
 }

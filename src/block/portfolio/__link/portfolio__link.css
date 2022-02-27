@@ -1,10 +1,22 @@
 .portfolio__link {
     display: flex;
     justify-content: space-between;
-    font-weight: normal;
-    font-size: 30px;
-    line-height: 91px;
+    font-size: 18px;
+    line-height: 28px;
     letter-spacing: -0.04em;
     color: #FFF;
     text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+    .portfolio__link { 
+        font-size: 28px;
+        line-height: 88px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .portfolio__link { 
+        font-size: 30px;
+    }
 }

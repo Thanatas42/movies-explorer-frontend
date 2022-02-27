@@ -4,6 +4,21 @@
     text-align: left;
     color: #8B8B8B;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 20px;
+    padding-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .portfolio__tittle {
+        padding-top: 34px;
+        font-size: 18px;
+        line-height: 20px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .portfolio__tittle {
+        padding-top: 44px;
+    }
 }

@@ -7,7 +7,7 @@
 
 @media screen and (min-width: 768px) {
     .lead__item-text {
-        max-width: 319px;
+        max-width: 100%;
         font-size: 12px;
         line-height: 18px;
     }
@@ -15,8 +15,8 @@
 
 @media screen and (min-width: 1280px) {
     .lead__item-text {
-        max-width: 550px;
+        max-width: 590px;
         font-size: 14px;
-        line-height: 20px;
+        line-height: 22px;
     }
 }

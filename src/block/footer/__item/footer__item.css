@@ -1,13 +1,15 @@
 .footer__item {
-    display: inline-block;
-    padding: 20px 20px 20px 0;
     font-weight: normal;
     font-size: 13px;
     line-height: 16px;
-    text-align: right;
+    padding: 0 0 12px;
 }
 
-.footer__item:last-child {
-    display: inline-block;
-    padding: 20px 0;
+@media screen and (min-width: 768px) {
+    .footer__item {
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 16px;
+        padding: 0 0 20px;
+    }
 }

@@ -8,17 +8,17 @@ function Portfolio() {
             <ul className="portfolio__list">
                 <li className="portfolio__item">
                     <a href="#top" className="portfolio__link">
-                        Статичный сайт<img src={link} alt="ссылка" />
+                        Статичный сайт<img className="portfolio__image" src={link} alt="ссылка" />
                     </a>
                 </li>
                 <li className="portfolio__item">
                     <a href="#top" className="portfolio__link">
-                        Адаптивный сайт<img src={link} alt="ссылка" />
+                        Адаптивный сайт<img className="portfolio__image" src={link} alt="ссылка" />
                     </a>
                 </li>
                 <li className="portfolio__item">
                     <a href="#top" className="portfolio__link">
-                        Одностраничное приложение<img src={link} alt="ссылка" />
+                        Одностраничное приложение<img className="portfolio__image" src={link} alt="ссылка" />
                     </a>
                 </li>
             </ul>

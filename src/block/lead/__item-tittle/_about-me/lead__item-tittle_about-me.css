@@ -1,7 +1,23 @@
 .lead__item-tittle_about-me {
     font-weight: normal;
-    font-size: 50px;
-    line-height: 58px;
+    font-size: 30px;
+    line-height: 36px;
     letter-spacing: -0.04em;
-    padding-bottom: 18px;
+    padding-bottom: 22px;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__item-tittle_about-me { 
+        padding-bottom: 16px;
+        font-size: 40px;
+        line-height: 40px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__item-tittle_about-me { 
+        padding-bottom: 18px;
+        font-size: 50px;
+        line-height: 58px;
+    }
 }

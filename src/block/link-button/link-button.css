@@ -1,0 +1,17 @@
+.link-button {
+    background-color: #303030;
+    color: #FFF;
+    border-radius: 3px;
+    width: 54px;
+    height: 26px;
+    text-decoration-line: none;
+    line-height: 26px;
+}
+
+@media screen and (min-width: 768px){
+    .header__button {
+        width: 76px;
+        height: 32px;
+        line-height: 32px;
+    }
+}

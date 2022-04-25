@@ -1,17 +1,16 @@
 .promo__tittle {
-    margin: 0;
-    width: 100%;
+    margin: 0 5px;
     padding: 220px 0 0;
-    align-self: center;
     font-size: 29px;
     line-height: 37px;
     letter-spacing: -0.04em;
     font-weight: normal;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 @media screen and (min-width: 768px) {
     .promo__tittle {
+        margin: 0 auto;
         font-size: 40px;
         line-height: 52px;
         max-width: 680px;

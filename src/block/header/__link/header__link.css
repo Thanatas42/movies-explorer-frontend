@@ -1,5 +1,5 @@
 .header__link {
-    text-decoration-line: none;
-    line-height: 16px;
-    color: #FFFFFF;
+    height: 0;
+    width: max-content;
+    line-height: 0;
 }

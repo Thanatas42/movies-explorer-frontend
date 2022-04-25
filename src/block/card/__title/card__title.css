@@ -1,0 +1,15 @@
+.card__title {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0;
+    text-align: left;
+    color: #FFF;
+}
+
+@media screen and (min-width: 768px) {
+    .card__title {
+        font-size: 13px;
+        line-height: 16px;
+    }
+}

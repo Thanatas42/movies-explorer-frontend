@@ -1,0 +1,24 @@
+.card__like {
+    -webkit-appearance: none;
+    background-image: url(../../../images/like.svg);
+    width: 15px;
+    height: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%, cover;
+}
+
+.card__like:checked {
+    background-image: url(../../../images/likeActive.svg);
+}
+
+.card__like:hover {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .card__like {
+        width: 15px;
+        height: 15px;
+    }
+}

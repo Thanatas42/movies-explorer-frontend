@@ -17,6 +17,7 @@ code {
 
 @import url(./vendor/normalize.css);
 @import url(./vendor/inter/inter.css);
+@import url(./block/link-button/link-button.css);
 
 @import url(./block/header/header.css);
 @import url(./block/header/__logo/header__logo.css);
@@ -86,3 +87,7 @@ code {
 @import url(./block/cards/cards.css);
 @import url(./block/card/card.css);
 @import url(./block/card/__image/card__image.css);
+@import url(./block/card/__like/card__like.css);
+@import url(./block/card/__title/card__title.css);
+@import url(./block/card/__container/card__container.css);
+@import url(./block/card/__duration/card__duration.css);

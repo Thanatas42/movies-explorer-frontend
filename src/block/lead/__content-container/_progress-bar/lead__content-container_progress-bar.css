@@ -7,13 +7,13 @@
 
 @media screen and (min-width: 768px) {
     .lead__content-container_progress-bar {
-        padding: 35px 0 0;
+        padding: 35px 0 90px;
         height: 67px;
     }
 }
 
 @media screen and (min-width: 1280px) {
     .lead__content-container_progress-bar {
-        padding: 48px 0 0;
+        padding: 48px 0 103px;
     }
 }

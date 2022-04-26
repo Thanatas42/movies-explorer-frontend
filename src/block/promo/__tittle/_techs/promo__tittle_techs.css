@@ -1,11 +1,6 @@
 .promo__tittle_techs {
     padding: 60px 0 24px;
-    font-weight: normal;
     font-size: 30px;
-    line-height: 36px;
-    text-align: center;
-    letter-spacing: -0.04em;
-    color: #FFFFFF;
 }
 
 @media screen and (min-width: 768px) {

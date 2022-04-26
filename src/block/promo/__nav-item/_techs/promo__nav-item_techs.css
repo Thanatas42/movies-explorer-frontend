@@ -1,7 +1,7 @@
 .promo__nav-item_techs {
     width: 84px;
     height: 57px;
-    margin: 0;
+    border-radius: 6px;
 }
 
 @media screen and (min-width: 1280px) {

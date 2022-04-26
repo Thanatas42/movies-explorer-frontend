@@ -1,14 +1,14 @@
 .promo__navbar_techs {
-    flex-wrap: wrap;
     gap: 10px;
-    width: 178px;
+    max-width: 178px;
     padding-bottom: 60px;
     justify-content: flex-start;
+    margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) {
     .promo__navbar_techs {
-        width: 90%;
+        max-width: 90%;
         justify-content: center;
     }
 }

@@ -1,11 +1,6 @@
 .lead__item-text_about-me {
-    font-weight: normal;
-    font-size: 11px;
-    line-height: 16px;
-    color: #FFFFFF;
-    mix-blend-mode: normal;
+    color: #FFF;
     padding-bottom: 20px;
-    font-style: normal;
 }
 
 @media screen and (min-width: 768px) {

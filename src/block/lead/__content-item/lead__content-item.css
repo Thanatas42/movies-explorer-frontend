@@ -1,11 +1,11 @@
 .lead__content-item {
     width: 100%;
     color: #DADADA;
-    padding-bottom: 58px;
+    padding-bottom: 57px;
 }
 
 .lead__content-item:last-child {
-    padding-bottom: 52px;
+    padding-bottom: 55px;
 }
 
 @media screen and (min-width: 768px) {

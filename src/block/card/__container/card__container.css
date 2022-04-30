@@ -1,5 +1,5 @@
 .card__container {
     display: flex;
     justify-content: space-between;
-    padding: 14px 20px 14px 14px;
+    padding: 12px 20px 14px 14px;
 }

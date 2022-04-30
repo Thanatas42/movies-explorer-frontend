@@ -1,16 +1,32 @@
 .cards {
     display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-    width: calc(100% - 20px);
+    margin: 0 auto;
+    max-width: calc(100% - 20px);
     padding: 50px 0 76px;
-    gap: 14px;
+    justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
     .cards {
+        grid-template-columns: 1fr 1fr;
         width: calc(100% - 60px);
         padding: 50px 0 76px;
-        gap: 30px;
+        gap: 24px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .cards {
+        grid-template-columns: 1fr 1fr 1fr;
+        width: calc(100% - 60px);
+        padding: 50px 0 76px;
+        
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .cards {
+        max-width: calc(1280px - 140px);
+        padding: 50px 0 76px;
     }
 }

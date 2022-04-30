@@ -18,6 +18,7 @@ code {
 @import url(./vendor/normalize.css);
 @import url(./vendor/inter/inter.css);
 @import url(./block/link-button/link-button.css);
+@import url(./block/switch/switch.css);
 
 @import url(./block/header/header.css);
 @import url(./block/header/__logo/header__logo.css);
@@ -85,6 +86,7 @@ code {
 @import url(./block/search/__switch-container/search__switch-container.css);
 
 @import url(./block/cards/cards.css);
+@import url(./block/calc/calc.css);
 @import url(./block/card/card.css);
 @import url(./block/card/__image/card__image.css);
 @import url(./block/card/__like/card__like.css);

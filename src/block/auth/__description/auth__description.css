@@ -1,0 +1,18 @@
+.auth__description {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 0;
+    margin: 0 auto;
+    color: #8B8B8B;
+}
+
+@media screen and (min-width: 768px) {
+    .auth__description {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
+

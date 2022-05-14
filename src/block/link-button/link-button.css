@@ -8,9 +8,13 @@
     line-height: 26px;
     margin: 0;
     text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    border: none;
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
     .header__button {
         width: 76px;
         height: 32px;

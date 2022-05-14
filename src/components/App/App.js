@@ -1,6 +1,6 @@
 import React from 'react';
 import Body from '../Content/Content';
-import Login from '../Login/Login';
+import Register from '../Register/Register';
 import Footer from '../Footer/Footer';
 
 import './App.css';
@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   return (
     <>
-      <Login />
+      <Register />
     </>
   );
 }

@@ -95,8 +95,11 @@ code {
 @import url(./block/card/__container/card__container.css);
 @import url(./block/card/__duration/card__duration.css);
 
-@import url(./block/login/login.css);
-@import url(./block/login/__logo/login__logo.css);
-@import url(./block/login/__title/login__title.css);
-@import url(./block/login/__input/login__input.css);
-@import url(./block/login/__text/login__text.css);
+@import url(./block/auth/auth.css);
+@import url(./block/auth/__container/auth__container.css);
+@import url(./block/auth/__title/auth__title.css);
+@import url(./block/auth/__input/auth__input.css);
+@import url(./block/auth/__text/auth__text.css);
+@import url(./block/auth/__submit/auth__submit.css);
+@import url(./block/auth/__description/auth__description.css);
+@import url(./block/auth/__link/auth__link.css);

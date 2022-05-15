@@ -1,0 +1,14 @@
+.error__link {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #4285F4;
+    background-color: #202020;
+}
+
+@media screen and (min-width: 768px) {
+    .error__link {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

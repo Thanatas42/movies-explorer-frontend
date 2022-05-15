@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import logo from '../../images/header__logo.svg';
 
 function Login() {
     return (
         <form className="auth">
             <fieldset className="auth__container">
-                <a href="#AboutProject" target="_self"><img src={logo} alt="Проект Movies Explorer" /></a>
+                <Link to="/" target="_self"><img src={logo} alt="Проект Movies Explorer" /></Link>
                 <h1 className="auth__title">Рады видеть!</h1>
                 <p className="auth__text">Email</p>
                 <input className="auth__input" type="email"
@@ -15,9 +16,9 @@ function Login() {
                     minLength="2" maxLength="40"
                     required />
             </fieldset>
-            <button className="link-button auth__submit" type="submit">Войти</button>
+            <button className="link auth__submit" type="submit">Войти</button>
             <p className="auth__description">Ещё не зарегистрированы?
-                <a className="auth__link" href="#top" target="_self"> Регистрация</a>
+                <Link className="link auth__link" to="/signup" target="_self"> Регистрация</Link>
             </p>
         </form>
     )

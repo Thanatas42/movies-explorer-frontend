@@ -1,0 +1,21 @@
+.error__tittle {
+    margin: 0;
+    padding: 42vh 0 10px;
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 97px;
+}
+
+@media screen and (min-width: 768px) {
+    .error__tittle {
+        padding: 40vh 0 5px;
+        font-size: 140px;
+        line-height: 169px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .error__tittle {
+        padding: 35vh 0 5px;
+    }
+}

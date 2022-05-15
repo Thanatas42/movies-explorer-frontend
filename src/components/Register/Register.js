@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import logo from '../../images/header__logo.svg';
 
 function Register() {
     return (
         <form className="auth">
             <fieldset className="auth__container">
-                <a href="#AboutProject" target="_self"><img src={logo} alt="Проект Movies Explorer" /></a>
+                <Link to="/" target="_self"><img src={logo} alt="Проект Movies Explorer" /></Link>
                 <h1 className="auth__title">Добро пожаловать!</h1>
                 <p className="auth__text">Имя</p>
                 <input className="auth__input" type="text"
@@ -19,9 +20,9 @@ function Register() {
                     minLength="2" maxLength="40"
                     required />
             </fieldset>
-            <button className="link-button auth__submit" type="submit">Зарегистрироваться</button>
+            <button className="link auth__submit" type="submit">Зарегистрироваться</button>
             <p className="auth__description">Уже зарегистрированы?
-                <a className="auth__link" href="#top" target="_self"> Войти</a>
+                <Link className="link auth__link" to="/signin" target="_self"> Войти</Link>
             </p>
         </form>
     )

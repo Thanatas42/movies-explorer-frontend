@@ -1,5 +1,10 @@
 .footer__date {
     margin: 0;
+    padding: 12px 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 15px;
+    color: #8B8B8B;
 }
 
 @media screen and (min-width: 768px) {

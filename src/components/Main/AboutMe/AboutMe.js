@@ -15,8 +15,8 @@ function AboutMe() {
                         и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании
                         «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
                     <ul className='lead__navbar'>
-                        <li><a className='lead__navlink' href="https://www.facebook.com" target="_blank" rel="noreferrer">Facebook</a></li>
-                        <li><a className='lead__navlink' href="https://github.com/Thanatas42" target="_blank" rel="noreferrer">Github</a></li>
+                        <li><a className='link lead__navlink' href="https://www.facebook.com" target="_blank" rel="noreferrer">Facebook</a></li>
+                        <li><a className='link lead__navlink' href="https://github.com/Thanatas42" target="_blank" rel="noreferrer">Github</a></li>
                     </ul>
                 </li>
                 <li className="lead__content-item lead__content-item_about-me-photo">

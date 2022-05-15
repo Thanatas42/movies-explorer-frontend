@@ -1,7 +1,4 @@
-.header__container {
-    font-family: 'Inter', Arial, sans-serif;
-    font-style: normal;
-    font-weight: 500;
+.header__container {    
     font-size: 10px;
     line-height: 16px;
     display: flex;

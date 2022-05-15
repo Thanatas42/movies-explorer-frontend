@@ -1,4 +1,7 @@
 .header {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
     width: calc(100% - 28px);
     margin: auto;
     height: 74px;

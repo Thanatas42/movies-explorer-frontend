@@ -8,9 +8,9 @@ function Footer() {
             <div className="footer__container">
                 <p className="footer__date">&#169; {year}</p>
                 <ul className="footer__list">
-                    <li className="footer__item"><a className="footer__link" href="https://practicum.yandex.ru" target="_blank" rel="noreferrer">Яндекс.Практикум</a></li>
-                    <li className="footer__item"><a className="footer__link" href="https://github.com" target="_blank" rel="noreferrer">Github</a></li>
-                    <li className="footer__item"><a className="footer__link" href="https://www.facebook.com" target="_blank" rel="noreferrer">Facebook</a></li>
+                    <li className="footer__item"><a className="link footer__link" href="https://practicum.yandex.ru" target="_blank" rel="noreferrer">Яндекс.Практикум</a></li>
+                    <li className="footer__item"><a className="link footer__link" href="https://github.com" target="_blank" rel="noreferrer">Github</a></li>
+                    <li className="footer__item"><a className="link footer__link" href="https://www.facebook.com" target="_blank" rel="noreferrer">Facebook</a></li>
                 </ul>
             </div>
         </footer>

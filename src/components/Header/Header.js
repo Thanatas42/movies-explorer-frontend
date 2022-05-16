@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
 import logo from '../../images/header__logo.svg';
+import { Link } from 'react-router-dom';
 
-function Header() {
+function Header(props) {
 
     return (
         <header className="header">
             <div className='header__container'>
                 <Link className="header__logo" to="/" target="_self"><img src={logo} alt="Проект Movies Explorer" /></Link>
+                {props.headerContentLeft}
             </div>
             <div className='header__container'>
-                <Link className="link header__link" to="/signup" target="_self">Регистрация</Link>
-                <Link className="link header__button" to="/signin" target="_self">Войти</Link>
+                {props.headerContentRight}
             </div>
         </header>
     )

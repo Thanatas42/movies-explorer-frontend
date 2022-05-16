@@ -4,11 +4,11 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
 
-function Movies() {
+function Movies(props) {
 
     return (
         <>
-            <Header />
+            <Header headerContentRight={props.headerContentRight} headerContentLeft={props.headerContentLeft} />
             <SearchForm />
             <MoviesCardList />
             <Footer />

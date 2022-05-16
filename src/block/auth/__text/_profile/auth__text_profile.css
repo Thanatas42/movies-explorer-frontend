@@ -1,0 +1,17 @@
+.auth__text_profile {
+    font-size: 11px;
+    line-height: 13px;
+    max-width: 50%;
+    margin: 0;
+    width: max-content;
+    padding: 0;
+    color: #FFF;
+}
+
+@media screen and (min-width: 768px) {
+    .auth__text_profile {
+        width: 100%;
+        max-width: 200px;
+        font-weight: 500;
+    }
+}

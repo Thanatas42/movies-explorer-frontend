@@ -16,7 +16,7 @@ function Login() {
                     minLength="2" maxLength="40"
                     required />
             </fieldset>
-            <button className="link auth__submit" type="submit">Войти</button>
+            <button className="button auth__submit" type="submit">Войти</button>
             <p className="auth__description">Ещё не зарегистрированы?
                 <Link className="link auth__link" to="/signup" target="_self"> Регистрация</Link>
             </p>

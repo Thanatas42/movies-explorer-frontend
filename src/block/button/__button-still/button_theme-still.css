@@ -1,0 +1,16 @@
+.button_theme-still {
+    display: block;
+    margin: 0 auto 100px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    width: calc(100% - 20px);
+    max-width: 1140px;
+    height: 36px;
+}
+
+@media screen and (min-width: 768px) {
+    .button_theme-still {
+        width: calc(100% - 60px);
+    }
+}

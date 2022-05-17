@@ -6,6 +6,12 @@
     height: 43px;
 }
 
+.header__navigation:hover {
+    cursor: pointer;
+    opacity: .5;
+    transition: .15s;
+}
+
 @media screen and (min-width: 768px) {
     .header__navigation {
         width: 44px;

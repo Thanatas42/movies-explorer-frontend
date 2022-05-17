@@ -5,8 +5,10 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Movies from '../Movies/Movies';
-import Error from '../NotFound/ErrorPage';
+import Error from '../ErrorPage/ErrorPage';
 import Header from '../Header/Header';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Navigation from '../Navigation/Navigation';
 import navIcon from '../../images/navIcon.svg';
 import { Link } from 'react-router-dom';
 import './App.css';
@@ -43,6 +45,9 @@ function App() {
           <Header headerContentRight={headerContentRight} headerContentLeft={headerContentLeft} />
           <Profile userName="Виталий" />
         </Route>
+        <Route path="/saved-movies">
+          <SavedMovies headerContentRight={headerContentRight} headerContentLeft={headerContentLeft} />
+        </Route>
         <Route path="/signup">
           <Register />
         </Route>
@@ -53,6 +58,8 @@ function App() {
           <Error errCode="404" errName="Страница не найдена" />
         </Route>
       </Switch>
+
+      <Navigation />
     </>
   );
 }

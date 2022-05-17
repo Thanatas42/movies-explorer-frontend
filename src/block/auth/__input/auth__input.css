@@ -16,6 +16,11 @@
     outline: 0;
 }
 
+.auth__input:focus {
+    border-bottom-color: #FFF;
+    transition: .15s;
+}
+
 @media screen and (min-width: 768px) {
     .auth__input {
         margin: 0;

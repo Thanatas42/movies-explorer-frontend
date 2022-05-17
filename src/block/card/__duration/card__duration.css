@@ -5,6 +5,7 @@
     margin: 0;
     text-align: left;
     padding: 0 14px 14px;
+    font-weight: 400;
 }
 
 @media screen and (min-width: 768px) {

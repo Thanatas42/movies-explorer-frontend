@@ -1,11 +1,9 @@
-import SearchForm from './SearchForm/SearchForm';
-import MoviesCardList from './MoviesCardList/MoviesCardList';
+import SearchForm from '../Movies/SearchForm/SearchForm';
+import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
-
-function Movies(props) {
-
+function SavedMovies(props) {
     return (
         <>
             <Header headerContentRight={props.headerContentRight} headerContentLeft={props.headerContentLeft} />
@@ -17,4 +15,4 @@ function Movies(props) {
     )
 }
 
-export default Movies;
+export default SavedMovies;

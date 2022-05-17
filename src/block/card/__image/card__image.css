@@ -10,3 +10,9 @@
         height: 190px;
     }
 }
+
+@media screen and (min-width: 1280px) {
+    .card__image {
+        height: 203px;
+    }
+}

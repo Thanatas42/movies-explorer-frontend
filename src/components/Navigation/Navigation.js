@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Navigation() {
     return ( /*popup_open*/
-        <div className="popup ">
+        <div className="popup">
             <div className='popup__container'>
                 <button className="button popup__close-button" type="reset"></button>
                 <div className='popup__links'>

@@ -126,7 +126,7 @@ code {
 @import url(./block/popup/__link/popup__link.css);
 @import url(./block/popup/__account/popup__account.css);
 @import url(./block/popup/__links/popup__links.css);
-@import url(./block/popup/popup_open/popup_open.css);
+@import url(./block/popup/_open/popup_open.css);
 
 @import url(./block/header/__link/_log-on/header__link_log-on.css);
 @import url(./block/header/__account/header__account.css);

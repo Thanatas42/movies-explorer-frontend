@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Main from '../Main/Main';
 import Profile from '../Profile/Profile';
@@ -9,44 +10,38 @@ import Error from '../ErrorPage/ErrorPage';
 import Header from '../Header/Header';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Navigation from '../Navigation/Navigation';
-import navIcon from '../../images/navIcon.svg';
-import { Link } from 'react-router-dom';
 import './App.css';
 
 
 
 function App() {
-  let headerContentLeft;
-  let headerContentRight;
-  if (window.screen.width < 1280) {
-    headerContentRight = <button className='header__navigation'><img src={navIcon} alt="Кнопка «button»"></img></button>;
-  } else {
-    headerContentRight =
-      <>
-        <Link className="link header__account" to="/profile" target="_self">Аккаунт</Link>
-      </>;
-    headerContentLeft =
-      <>
-        <Link className="link header__link header__link_log-on" to="/movies" target="_self">Фильмы</Link>
-        <Link className="link header__link header__link_log-on" to="/saved-movies" target="_self">Сохранённые фильмы</Link>
-      </>;
+  let LogOn = true;
+  const [isNavigationPopupOpen, setNavigationPopupOpen] = React.useState(false);
+
+  function handleNavigationClick() {
+    setNavigationPopupOpen(true);
+  };
+
+  function closeAllPopups() {
+    setNavigationPopupOpen(false);
   }
+
 
   return (
     <>
       <Switch>
         <Route exact path="/">
-          <Main />
+          <Main LogOn={LogOn} onOpen={handleNavigationClick} onClose={closeAllPopups} />
         </Route>
         <Route path="/movies">
-          <Movies headerContentRight={headerContentRight} headerContentLeft={headerContentLeft} />
+          <Movies LogOn={LogOn} onOpen={handleNavigationClick} />
         </Route>
         <Route path="/profile">
-          <Header headerContentRight={headerContentRight} headerContentLeft={headerContentLeft} />
+          <Header LogOn={LogOn} onOpen={handleNavigationClick} />
           <Profile userName="Виталий" />
         </Route>
         <Route path="/saved-movies">
-          <SavedMovies headerContentRight={headerContentRight} headerContentLeft={headerContentLeft} />
+          <SavedMovies LogOn={LogOn} onOpen={handleNavigationClick} />
         </Route>
         <Route path="/signup">
           <Register />
@@ -59,7 +54,7 @@ function App() {
         </Route>
       </Switch>
 
-      <Navigation />
+      <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
     </>
   );
 }

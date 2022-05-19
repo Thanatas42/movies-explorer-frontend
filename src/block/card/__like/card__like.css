@@ -6,10 +6,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%, cover;
-}
-
-.card__like:checked {
-    background-image: url(../../../images/likeActive.svg);
+    background-color: #222;
+    border: none;
 }
 
 .card__like:hover {

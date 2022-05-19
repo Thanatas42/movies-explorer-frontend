@@ -6,10 +6,9 @@ import Header from '../Header/Header';
 function SavedMovies(props) {
     return (
         <>
-            <Header headerContentRight={props.headerContentRight} headerContentLeft={props.headerContentLeft} />
+            <Header LogOn={props.LogOn} onOpen={props.onOpen} />
             <SearchForm />
             <MoviesCardList />
-            <button className='button button_theme-still'>Еще</button>
             <Footer />
         </>
     )

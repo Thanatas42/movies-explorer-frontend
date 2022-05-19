@@ -5,6 +5,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%, cover;
+    background-color: #222;
+    border: none;
 }
 
 .card__delete:hover {

@@ -1,5 +1,7 @@
 .popup {
     visibility: hidden;
+    position: relative;
+    height: 100vh;
 }
 
 @keyframes move1 {
@@ -12,6 +14,7 @@
 }
 
 .popup:before {
+    position: relative;
     content: '';
     background: #000;
     position: fixed;

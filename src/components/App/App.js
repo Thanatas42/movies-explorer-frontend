@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState, useEffect } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Main from '../Main/Main';
 import Profile from '../Profile/Profile';
@@ -53,7 +52,6 @@ function App() {
           <Error errCode="404" errName="Страница не найдена" />
         </Route>
       </Switch>
-
       <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
     </>
   );

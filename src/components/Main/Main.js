@@ -5,7 +5,6 @@ import AboutMe from './AboutMe/AboutMe';
 import Portfolio from './Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import { Link } from 'react-router-dom';
 
 function Main(props) {
     return (

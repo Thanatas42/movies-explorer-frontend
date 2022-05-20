@@ -1,0 +1,23 @@
+.promo__nav-item {
+    width: 82px;
+    height: 26px;
+    border-radius: 6px;
+    border: none;
+
+    margin-right: 6px;
+    margin-top: 6px;
+}
+
+.promo__nav-item:last-child {
+    margin-right: 0px;
+}
+
+@media screen and (min-width: 768px) {
+    .promo__nav-item {
+        width: 96px;
+        height: 36px;
+        line-height: 36px;
+        margin-right: 10px;
+        border-radius: 10px;
+    }
+}

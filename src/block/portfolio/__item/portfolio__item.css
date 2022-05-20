@@ -1,0 +1,21 @@
+.portfolio__item {
+    border-bottom: 1px solid #424242;
+    height: 47px;
+    padding-top: 21px;
+    transition: .15s;
+}
+
+.portfolio__item:last-child {
+    border-bottom: none;
+}
+
+@media screen and (min-width: 768px) {
+    .portfolio__item {
+        height: 88px;
+        padding-top: 0px;
+    }
+}
+.portfolio__item:hover {
+    opacity: .5;
+    transition: .15s;
+}

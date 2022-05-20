@@ -1,0 +1,18 @@
+.lead__content-container_about-me {
+    flex-direction: column-reverse;
+    width: calc(100% - 28px);
+}
+
+@media screen and (min-width: 768px) {
+    .lead__content-container_about-me {
+        flex-direction: row;
+        width: calc(100% - 100px);
+        padding-top: 66px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__content-container_about-me {
+        width: calc(100% - 140px);
+    }
+}

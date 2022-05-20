@@ -1,0 +1,15 @@
+.auth__link_profile {
+    display: block;
+    max-width: 260px;
+    width: 80%;
+    margin: 0 auto;
+    color: #FFF;
+}
+
+@media screen and (min-width: 768px) {
+    .auth__link_profile {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+    }
+}

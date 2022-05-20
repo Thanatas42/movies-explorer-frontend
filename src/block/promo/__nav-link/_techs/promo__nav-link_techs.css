@@ -1,0 +1,12 @@
+.promo__nav-link_techs {
+    letter-spacing: -0.04em;
+    font-size: 12px;
+    line-height: 57px;
+}
+
+@media screen and (min-width: 1280px) {
+    .promo__nav-link_techs {
+        font-size: 14px;
+        line-height: 60px;
+    }
+}

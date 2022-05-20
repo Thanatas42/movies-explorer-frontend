@@ -1,0 +1,28 @@
+.lead__content-item_about-me-photo {
+    width: 100%;
+    max-width: 292px;
+    height: 352px;
+    max-height: 352px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.lead__content-item_about-me-photo:last-child {
+    padding-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__content-item_about-me-photo {
+        width: 255px;
+        height: 307px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__content-item_about-me-photo {
+        width: 270px;
+        height: 327px;
+    }
+}

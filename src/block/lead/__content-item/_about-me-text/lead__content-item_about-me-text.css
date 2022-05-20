@@ -1,0 +1,6 @@
+@media screen and (min-width: 768px) {
+    .lead__content-item_about-me-text {
+        width: 100%;
+        padding-right: 50px;
+    }
+}

@@ -1,0 +1,22 @@
+.promo__tittle-container {
+    width: calc(100% - 36px);
+    height: 76px;
+    text-align: left;
+    padding-top: 30px;
+    margin: 0 auto;
+    border-bottom: 1px solid #DADADA;
+}
+
+@media screen and (min-width: 768px) {
+    .promo__tittle-container {
+        width: calc(100% - 100px);
+        padding-top: 63px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .promo__tittle-container {
+        width: calc(1280px - 140px);
+        padding-top: 77px;
+    }
+}

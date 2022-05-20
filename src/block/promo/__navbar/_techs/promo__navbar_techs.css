@@ -1,0 +1,14 @@
+.promo__navbar_techs {
+    gap: 10px;
+    max-width: 178px;
+    padding-bottom: 60px;
+    justify-content: flex-start;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+    .promo__navbar_techs {
+        max-width: 90%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,14 @@
+.header__container {    
+    font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+    .header__container {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}

@@ -1,0 +1,23 @@
+.promo_techs {
+    width: 100%;
+    max-width: 1280px;
+    border-radius: 0;
+    min-height: 651px;
+    justify-content: flex-start;
+    margin: 0 auto;
+    background-color: #202020;
+}
+
+@media screen and (min-width: 768px) {
+    .promo_techs {
+        min-height: 567px;
+        background-color: #272727;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .promo_techs {
+        min-height: 625px;
+        width: 100%;
+    }
+}

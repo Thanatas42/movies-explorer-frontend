@@ -1,0 +1,28 @@
+.promo__tittle {
+    margin: 0 5px;
+    padding: 220px 0 0;
+    font-size: 29px;
+    line-height: 37px;
+    letter-spacing: -0.04em;
+    font-weight: normal;
+    color: #FFF;
+}
+
+@media screen and (min-width: 768px) {
+    .promo__tittle {
+        margin: 0 auto;
+        font-size: 40px;
+        line-height: 52px;
+        max-width: 680px;
+        padding-top: 305px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .promo__tittle {
+        font-size: 50px;
+        line-height: 58px;
+        max-width: 730px;
+        padding-top: 160px;
+    }
+}

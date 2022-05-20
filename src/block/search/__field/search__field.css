@@ -1,0 +1,13 @@
+.search__field {
+    border: 1.5px solid #424242;
+    border-radius: 8px;
+    padding: 6px;
+    padding-left: 12px;
+}
+
+@media screen and (min-width: 768px) {
+    .search__field {
+        padding: 10px;
+        padding-left: 25px;
+    }
+}

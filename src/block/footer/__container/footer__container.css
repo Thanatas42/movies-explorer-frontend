@@ -1,0 +1,19 @@
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FFF;
+}
+
+@media screen and (min-width: 768px) {
+    .footer__container {
+        justify-content: space-between;
+        flex-direction: row;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

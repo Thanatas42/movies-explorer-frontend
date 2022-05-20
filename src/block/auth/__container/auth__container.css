@@ -1,0 +1,20 @@
+.auth__container {
+    min-height: calc(100vh - 180px);
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .auth__container {
+        text-align: left;
+        min-height: calc(100vh - 560px);
+    }
+}
+
+
+@media screen and (min-width: 1280px) {
+    .auth__container {
+        min-height: calc(100vh - 240px);
+    }
+}

@@ -1,0 +1,18 @@
+.auth__input_profile {
+    width: max-content;
+    max-width: 70%;
+    border: none;
+    font-size: 11px;
+    line-height: 13px;
+    height: 14px;
+    text-align: right;
+}
+
+@media screen and (min-width: 768px) {
+    .auth__input_profile {
+        margin: 0;
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+}

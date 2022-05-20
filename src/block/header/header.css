@@ -1,0 +1,22 @@
+.header {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    width: calc(100% - 28px);
+    margin: auto;
+    height: 74px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        width: calc(100% - 60px);
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .header {
+        width: calc(1280px - 140px);
+    }
+}

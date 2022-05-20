@@ -1,0 +1,30 @@
+.lead__content-item {
+    width: 100%;
+    color: #FFF;
+    padding-bottom: 57px;
+}
+
+.lead__content-item:last-child {
+    padding-bottom: 55px;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__content-item {
+        padding-right: 30px;
+        width: 50%;
+    }
+
+    .lead__content-item:last-child {
+        padding-right: 0px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__content-item {
+        padding-right: 40px;
+    }
+
+    .lead__content-item:last-child {
+        padding-right: 0px;
+    }
+}

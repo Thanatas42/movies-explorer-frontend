@@ -1,0 +1,14 @@
+.promo__navbar {
+    margin: 0 auto;
+    padding: 0 0 17px;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+    .promo__navbar {
+        padding-bottom: 30px;
+    }
+}

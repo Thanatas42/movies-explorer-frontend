@@ -1,0 +1,23 @@
+.search {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    width: calc(100vw - 28px);
+    margin: auto;
+    border-bottom: 1px solid #424242;
+    padding: 70px 0 64px;
+}
+
+@media screen and (min-width: 768px) {
+    .search {
+        width: calc(100vw - 60px);
+        padding: 70px 0 52px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .search {
+        width: calc(1280px - 140px);
+        padding: 70px 0 40px;
+    }
+}

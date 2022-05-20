@@ -1,0 +1,11 @@
+.search__switch-container {
+    display: flex;
+    gap: 13px;
+    padding-top: 31px;
+}
+
+@media screen and (min-width: 768px) {
+    .search__switch-container {
+        padding-top: 26px;
+    }
+}

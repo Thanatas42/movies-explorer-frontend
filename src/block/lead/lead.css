@@ -1,0 +1,21 @@
+.lead {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+
+    max-width: 1280px;
+    min-height: 635px;
+    margin: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .lead {
+        min-height: 520px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead {
+        min-height: 585px;
+    }
+}

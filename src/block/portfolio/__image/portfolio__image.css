@@ -1,0 +1,21 @@
+.portfolio__image {
+    width: 11px;
+    height: 10px;
+    padding-right: 4px;
+    padding-top: 6px;
+}
+
+@media screen and (min-width: 768px) {
+    .portfolio__image {
+        padding-top: 38px;
+        padding-right: 8px;
+        width: 14px;
+        height: 16px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .portfolio__image {
+        padding-right: 4px;
+    }
+}

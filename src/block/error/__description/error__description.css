@@ -1,0 +1,21 @@
+.error__description {
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    padding-bottom: 36vh;
+}
+
+@media screen and (min-width: 768px) {
+    .error__description {
+        font-size: 16px;
+        line-height: 19px;
+        padding-bottom: 18vh;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .error__description {
+        padding-bottom: 26vh;
+    }
+}

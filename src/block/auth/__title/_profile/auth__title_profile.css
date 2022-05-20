@@ -1,0 +1,17 @@
+.auth__title_profile {
+    padding: 50px 0 65px;
+    
+}
+
+@media screen and (min-width: 768px) {
+    .auth__title_profile {
+        text-align: center;
+        padding: 50px 0 82px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .auth__title_profile {
+        padding: 50px 0 108px;
+    }
+}

@@ -1,0 +1,29 @@
+.lead__content-item_progress-bar {
+    width: 35%;
+    max-height: 67px;
+    padding: 0;
+}
+
+.lead__content-item_progress-bar:last-child {
+    width: 65%;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__content-item_progress-bar {
+        width: 21%;
+    }
+    
+    .lead__content-item_progress-bar:last-child {
+        width: 79%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__content-item_progress-bar {
+        width: 20%;
+    }
+    
+    .lead__content-item_progress-bar:last-child {
+        width: 80%;
+    }
+}

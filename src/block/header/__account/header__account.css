@@ -1,0 +1,11 @@
+.header__account {
+    background: #313131;
+    border-radius: 20px;
+    display: none;
+}
+
+@media screen and (min-width: 1280px) {
+    .header__account {
+        display: block;
+    }
+}

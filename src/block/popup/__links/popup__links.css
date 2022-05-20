@@ -1,0 +1,10 @@
+.popup__links {
+    padding: 10px;
+    min-height: calc(100% - 80px)
+}
+
+@media screen and (min-width: 768px) {
+    .popup__links {
+        min-height: calc(100% - 194px)
+    }
+}

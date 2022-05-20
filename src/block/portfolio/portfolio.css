@@ -1,0 +1,15 @@
+.portfolio {
+    width: calc(100% - 28px);
+    max-width: 1140px;
+    margin: auto;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    padding: 8px 0 0;
+}
+
+@media screen and (min-width: 768px) {
+    .portfolio {
+        width: calc(100% - 100px);
+    }
+}

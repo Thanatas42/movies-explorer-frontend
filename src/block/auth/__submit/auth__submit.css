@@ -1,0 +1,20 @@
+.auth__submit {
+    background-color: #4285F4;
+    padding: 0;
+    width: 260px;
+    max-width: 82%;
+    height: 45px;
+    margin: 14px auto;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+@media screen and (min-width: 768px) {
+    .auth__submit {
+        width: 100%;
+        max-width: 396px;
+        margin: 16px auto;
+    }
+}

@@ -1,0 +1,26 @@
+.promo__description {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    color: #FFF;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.04em;
+}
+
+@media screen and (min-width: 768px) {
+    .promo__description {
+        font-size: 12px;
+        line-height: 18px;
+        width: 460px;
+        padding-bottom: 83px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .promo__description {
+        font-size: 14px;
+        line-height: 20px;
+        padding-bottom: 102px;
+    }
+}

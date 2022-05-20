@@ -1,0 +1,25 @@
+.search__input {
+    width: calc(100% - 80px);
+    height: 44px;
+    border: none;
+    padding: 0;
+    background-color: #202020;
+    color: #8B8B8B;
+    font-size: 16px;
+    line-height: 16px;
+    outline: 0;
+}
+
+.search__input:focus {
+    border-bottom: 3px solid #FFF;
+    transition: .15s;
+}
+
+@media screen and (min-width: 768px) {
+    .search__input {
+        width: calc(100% - 100px);
+        height: 48px;
+        font-size: 18px;
+        line-height: 20px;
+    }
+}

@@ -1,0 +1,24 @@
+.lead__content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(100% - 36px);
+    text-align: left;
+    padding: 62px 0 0;
+    margin: auto;
+    list-style-type: none;
+}
+
+@media screen and (min-width: 768px) {
+    .lead__content-container {
+        width: calc(100% - 100px);
+        padding-top: 70px;
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .lead__content-container {
+        width: calc(100% - 140px);
+    }
+}

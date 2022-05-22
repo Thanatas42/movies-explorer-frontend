@@ -5,7 +5,6 @@ import navIcon from '../../images/navIcon.svg';
 
 function Header(props) {
 
-
     return (
         <header className="header">
             <div className='header__container'>

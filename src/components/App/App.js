@@ -14,7 +14,7 @@ import './App.css';
 
 
 function App() {
-  let LogOn = true;
+  let LogOn = false;
   const [isNavigationPopupOpen, setNavigationPopupOpen] = React.useState(false);
 
   function handleNavigationClick() {

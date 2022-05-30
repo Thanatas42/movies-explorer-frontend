@@ -106,6 +106,8 @@ body {
 @import url(./block/auth/__description/auth__description.css);
 @import url(./block/auth/__link/auth__link.css);
 @import url(./block/auth/__group/auth__group.css);
+@import url(./block/auth/__error/auth__error.css);
+@import url(./block/auth/__submit/theme_disabled/auth__submit_theme_disabled.css);
 
 @import url(./block/auth/_profile/auth_profile.css);
 @import url(./block/auth/__text/_profile/auth__text_profile.css);

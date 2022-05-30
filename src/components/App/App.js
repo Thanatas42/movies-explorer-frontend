@@ -12,16 +12,18 @@ import Header from '../Header/Header';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import createApi from "../../utils/MoviesApi"
+import createApi from "../../utils/MoviesApi";
+import * as MainApi from '../../utils/MainApi';
 import './App.css';
 
 
 
 function App() {
-  let LogOn = true;
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [api, setApi] = React.useState(null);
   const [isNavigationPopupOpen, setNavigationPopupOpen] = React.useState(false);
   const [MoviesArray, setMoviesArray] = React.useState([]);
+  const [resStatus, setResStatus] = React.useState(false);
 
   function handleNavigationClick() {
     setNavigationPopupOpen(true);
@@ -30,6 +32,29 @@ function App() {
   function closeAllPopups() {
     setNavigationPopupOpen(false);
   }
+
+  const onReg = (emailInput, passwordInput, nameInput) => {
+    return MainApi.register(emailInput, passwordInput, nameInput).then((res) => {
+      if (!res) throw new Error("Что-то пошло не так");
+      return res;
+    });
+  };
+
+  const onLog = (emailInput, passwordInput) => {
+    return MainApi.authorize(emailInput, passwordInput).then((res) => {
+      if (!res || !res.token)
+        throw new Error("Неправильные имя пользователя или пароль");
+      if (res.token) {
+        setLoggedIn(true);
+        setApi(createApi(res.token));
+        localStorage.setItem("jwt", res.token);
+      }
+    })
+      .catch((err) => {
+        console.log(err);
+        setResStatus(false);
+      });
+  };
 
   React.useEffect(() => {
     setApi(createApi);
@@ -55,27 +80,27 @@ function App() {
   return (
     <>
       <MoviesArrayContex.Provider value={MoviesArray}>
-        <Header LogOn={LogOn} onOpen={handleNavigationClick} />
+        <Header LogOn={loggedIn} onOpen={handleNavigationClick} />
         <Switch>
           <Route exact path="/">
-            <Main LogOn={LogOn} />
+            <Main LogOn={loggedIn} />
           </Route>
 
-          <ProtectedRoute path="/movies" component={Movies} loggedIn={LogOn} />
+          <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} />
 
-          <ProtectedRoute path="/profile" userName="Виталий" component={Profile} loggedIn={LogOn} />
+          <ProtectedRoute path="/profile" userName="Виталий" component={Profile} loggedIn={loggedIn} />
 
-          <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={LogOn} />
+          <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} />
 
           <Route path="/signup">
-            <Register />
+            <Register onReg={onReg} onLog={onLog} />
           </Route>
 
           <Route path="/signin">
-            <Login />
+            <Login onLog={onLog} />
           </Route>
           <Route>
-            {LogOn ? (
+            {loggedIn ? (
               <Redirect to="/movies" />
             ) : (
               <Redirect to="/signin" />

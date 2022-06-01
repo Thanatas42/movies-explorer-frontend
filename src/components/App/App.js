@@ -14,8 +14,9 @@ import Header from '../Header/Header';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import createApi from "../../utils/MoviesApi";
-import * as MainApi from '../../utils/MainApi';
+import createApi from "../../utils/MainApi";
+import * as Auth from '../../utils/Auth';
+import * as MoviesApi from '../../utils/MoviesApi';
 import './App.css';
 
 function App() {
@@ -36,19 +37,16 @@ function App() {
   }
 
   const auth = (jwt) => {
-    MainApi.getContent(jwt)
+    Auth.getContent(jwt)
       .then((res) => {
         if (res) {
-          console.log(res);
+          setLoggedIn(true);
           setCurrentUser({
             userName: res.data.name,
             userEmail: res.data.email,
             userId: res.data._id
           });
-          setLoggedIn(true);
-          if (!api) {
-            setApi(createApi);
-          }
+          setApi(createApi(jwt));
         }
       })
       .catch((err) => {
@@ -67,30 +65,31 @@ function App() {
     if (loggedIn) history.push("/movies");
   }, [loggedIn, history]);
 
-  function handleUpdateUser(userData) {
-    /*MainApi.updateUser(userData)
-      .then((userData) => {
+  function handleUpdateUser(name, email) {
+    api.updateUser(name, email)
+      .then(() => {
         setCurrentUser({
-          userName: userData.name,
-          userEmail: userData.email
+          userName: name,
+          userEmail: email,
+          userId: currentUser._id
         });
-        console.log(currentUser)
+        history.push("/movies");
       })
       .catch((err) => {
         console.log(err);
-      });*/
+      });
   };
 
 
   const onReg = (emailInput, passwordInput, nameInput) => {
-    return MainApi.register(emailInput, passwordInput, nameInput).then((res) => {
+    return Auth.register(emailInput, passwordInput, nameInput).then((res) => {
       if (!res) throw new Error("Что-то пошло не так");
       return res;
     });
   };
 
   const onLog = (emailInput, passwordInput) => {
-    return MainApi.authorize(emailInput, passwordInput).then((res) => {
+    return Auth.authorize(emailInput, passwordInput).then((res) => {
       if (!res || !res.token)
         throw new Error("Неправильные имя пользователя или пароль");
       if (res.token) {
@@ -112,14 +111,14 @@ function App() {
     history.push("/signin");
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api) {
       console.log("api is null");
       return;
     }
     console.log("api is not null");
 
-    api.getMoviesCard()
+    MoviesApi.getMoviesCard()
       .then((initialMovies) => {
         setMoviesArray(initialMovies);
       })
@@ -141,8 +140,8 @@ function App() {
 
             <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} />
 
-            <ProtectedRoute path="/profile" userName="Виталий" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut} 
-            updateUser={handleUpdateUser} />
+            <ProtectedRoute path="/profile" userName="Виталий" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
+              updateUser={handleUpdateUser} />
 
             <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} />
 

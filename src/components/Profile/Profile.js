@@ -1,5 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
-import { useContext, useState, useCallback } from "react";
+import { useContext, useState } from "react";
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Profile(props) {
@@ -20,21 +20,8 @@ function Profile(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(values)
-        props.updateUser(values)
-            .then(() => {
-                console.log("Succes");
-            }).catch((err) => {
-                console.log(err);
-            });
+        props.updateUser(values.UserName, values.UserEmail)
     };
-
-
-    const getValue = useCallback((obj, nameProp) => {
-        let { [nameProp]: email = '' } = obj;
-        return email;
-    }
-    );
 
     return (
         <form className="auth auth_profile" onSubmit={handleSubmit}>

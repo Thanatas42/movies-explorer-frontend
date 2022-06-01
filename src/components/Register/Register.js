@@ -61,7 +61,7 @@ function Register({ onReg, onLog }) {
                 <label className="auth__error" htmlFor="UserEmail">{errors.UserEmail}</label>
                 <p className="auth__text">Пароль</p>
                 <input id='UserPass' name='UserPass' className="auth__input" type="password"
-                    minLength="8" maxLength="32"
+                    minLength="8" maxLength="32" suggested="current-password"
                     required value={getValue(values, 'UserPass')} onChange={handleChange} autoComplete="current-password" />
                 <label className="auth__error" htmlFor="UserPass">{errors.UserPass} </label>
             </fieldset>

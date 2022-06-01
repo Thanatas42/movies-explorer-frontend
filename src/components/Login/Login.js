@@ -32,6 +32,7 @@ function Login({ onLog }) {
                 history.push("/movies");
             })
             .catch((err) => {
+                setresError(err);
                 console.log(err);
             });
     };
@@ -63,7 +64,7 @@ function Login({ onLog }) {
                 <label className="auth__error" htmlFor="UserEmail">{errors.UserEmail}</label>
                 <p className="auth__text">Пароль</p>
                 <input id='UserPass' name='UserPass' className="auth__input" type="password"
-                    minLength="8" maxLength="40"
+                    minLength="8" maxLength="40" suggested="current-password"
                     required value={getValue(values, 'UserPass')} onChange={handleChange} />
                 <label className="auth__error" htmlFor="UserPass">{errors.UserPass}</label>
             </fieldset>

@@ -1,42 +1,40 @@
-export const BASE_URL = "https://api.movies-dmitry.nomoredomains.rocks";
-
-const resStatus = (res) => {
+const handleResponse = (res) => {
     if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
     }
-    return res.json();
+    return res.json().then((json) => {
+        if (json.data) {
+            return json.data;
+        } else {
+            return json;
+        }
+    })
 };
 
-export const register = (email, password, name) => {
-    return fetch(`${BASE_URL}/signup`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password, name }),
-    }).then(resStatus)
-        .catch(new Error("Что-то пошло не так"));
-};
+class Api {
+    constructor({ baseUrl, headers }) {
+        this._baseUrl = baseUrl;
+        this._headers = headers;
+    };
 
-export const authorize = (email, password) => {
-    return fetch(`${BASE_URL}/signin`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-    }).then(resStatus)
-        .catch(new Error("Что-то пошло не так"));;
-};
 
-export const getContent = (token) => {
-    return fetch(`${BASE_URL}/users/me`, {
-        method: "GET",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        },
-    }).then(resStatus);
-};
+    updateUser(name, email) {
+        const url = `${this._baseUrl}/users/me`;
+        return fetch(url, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({ name, email }),
+        }).then(handleResponse);
+    };
 
+}
+
+const createApi = (token) => new Api({
+    baseUrl: "https://api.movies-dmitry.nomoredomains.rocks",
+    headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+    },
+});
+
+export default createApi;

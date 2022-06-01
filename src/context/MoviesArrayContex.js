@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const MoviesArray = [{ userName: "", userDescription: "", userAvatar: "", duration: "" }];
+export const MoviesArray = [];
 
 export const MoviesArrayContex = React.createContext();

@@ -39,3 +39,4 @@ export const getContent = (token) => {
         },
     }).then(resStatus);
 };
+

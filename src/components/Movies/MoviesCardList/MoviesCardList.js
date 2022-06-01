@@ -5,15 +5,12 @@ import { MoviesArrayContex } from '../../../context/MoviesArrayContex';
 function MoviesCardList() {
     const MoviesArray = useContext(MoviesArrayContex);
 
+
     return (
         <ul className="cards">
             {MoviesArray.map((item) => {
-
-                return (
-                    <MoviesCard movies={item} key={item.id} />
-                )
+                return <MoviesCard movies={item} key={item.id} />
             })}
-            <MoviesCard />
         </ul>
     )
 }

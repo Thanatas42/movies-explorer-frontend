@@ -10,6 +10,7 @@
     column-gap: 30px;
     justify-content: center;
     min-height: calc(100vh - 695px);
+    list-style: none;
 }
 
 @media screen and (min-width: 768px) {

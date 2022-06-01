@@ -18,20 +18,17 @@ function Login({ onLog }) {
         setIsValid(target.closest("form").checkValidity());
     };
 
-    const resetForm = useCallback(
-        (newValues = {}, newErrors = {}, newIsValid = false) => {
-            setValues(newValues);
-            setErrors(newErrors);
-            setIsValid(newIsValid);
-        },
-        [setValues, setErrors, setIsValid]
-    );
+    function resetForm() {
+        setValues({});
+        setErrors({});
+        setIsValid(false);
+    };
 
     function handleSubmit(e) {
         e.preventDefault();
         onLog(getValue(values, 'UserEmail'), getValue(values, 'UserPass'))
-            .then(resetForm)
             .then(() => {
+                resetForm();
                 history.push("/movies");
             })
             .catch((err) => {
@@ -65,7 +62,7 @@ function Login({ onLog }) {
                     required value={getValue(values, 'UserEmail')} onChange={handleChange} />
                 <label className="auth__error" htmlFor="UserEmail">{errors.UserEmail}</label>
                 <p className="auth__text">Пароль</p>
-                <input id='UserPass' name='UserPass' className="auth__input" type="text"
+                <input id='UserPass' name='UserPass' className="auth__input" type="password"
                     minLength="8" maxLength="40"
                     required value={getValue(values, 'UserPass')} onChange={handleChange} />
                 <label className="auth__error" htmlFor="UserPass">{errors.UserPass}</label>

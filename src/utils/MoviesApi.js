@@ -14,12 +14,17 @@ const handleResponse = (res) => {
 class Api {
     constructor({ baseUrl }) {
         this._baseUrl = baseUrl;
-        //this._headers = headers;
     };
 
     getMoviesCard() {
         const url = `${this._baseUrl}`;
-        return fetch(url).then(handleResponse);
+        return fetch(url, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        }).then(handleResponse);
     };
 }
 

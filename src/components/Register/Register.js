@@ -18,21 +18,12 @@ function Register({ onReg, onLog }) {
         setIsValid(target.closest("form").checkValidity());
     };
 
-    const resetForm = useCallback(
-        (newValues = {}, newErrors = {}, newIsValid = false) => {
-            setValues(newValues);
-            setErrors(newErrors);
-            setIsValid(newIsValid);
-        },
-        [setValues, setErrors, setIsValid]
-    );
-
     function handleSubmit(e) {
         e.preventDefault();
         onReg(getValue(values, 'UserEmail'), getValue(values, 'UserPass'), getValue(values, 'UserName'))
-            .then(resetForm())
             .then(() => {
                 onLog(getValue(values, 'UserEmail'), getValue(values, 'UserPass'));
+                resetForm();
                 history.push("/movies");
             })
             .catch((err) => {
@@ -40,6 +31,12 @@ function Register({ onReg, onLog }) {
                 console.log(err);
             });
     }
+
+    function resetForm() {
+        setValues({});
+        setErrors({});
+        setIsValid(false);
+    };
 
     const getValue = useCallback((obj, nameProp) => {
         let { [nameProp]: email = '' } = obj;

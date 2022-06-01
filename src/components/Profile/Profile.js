@@ -1,25 +1,61 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useContext, useState, useCallback } from "react";
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Profile(props) {
+    const currentUser = useContext(CurrentUserContext);
+    const history = useHistory();
+    const [values, setValues] = useState({ UserName: currentUser.userName, UserEmail: currentUser.userEmail });
+    const [errors, setErrors] = useState({});
+    const [isValid, setIsValid] = useState(false);
+
+    const handleChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
+        setValues({ ...values, [name]: value });
+        setErrors({ ...errors, [name]: target.validationMessage });
+        setIsValid(target.closest("form").checkValidity());
+    };
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log(values)
+        props.updateUser(values)
+            .then(() => {
+                console.log("Succes");
+            }).catch((err) => {
+                console.log(err);
+            });
+    };
+
+
+    const getValue = useCallback((obj, nameProp) => {
+        let { [nameProp]: email = '' } = obj;
+        return email;
+    }
+    );
+
     return (
-        <form className="auth auth_profile">
+        <form className="auth auth_profile" onSubmit={handleSubmit}>
             <fieldset className="auth__container auth__container_profile">
-                <h1 className="auth__title auth__title_profile">Привет, {props.userName}!</h1>
+                <h1 className="auth__title auth__title_profile">Привет, {currentUser.userName}!</h1>
                 <div className="auth__group">
                     <p className="auth__text auth__text_profile">Имя</p>
-                    <input className="auth__input auth__input_profile" type="text"
-                        minLength="2" maxLength="40"
+                    <input id='UserName' name='UserName' className="auth__input auth__input_profile" type="text"
+                        minLength="2" maxLength="40" value={values.UserName} onChange={handleChange}
                         required />
                 </div>
                 <div className="auth__group">
                     <p className="auth__text auth__text_profile">Email</p>
-                    <input className="auth__input auth__input_profile" type="email"
-                        minLength="2" maxLength="40"
+                    <input id='UserEmail' name='UserEmail' className="auth__input auth__input_profile"
+                        type="email" minLength="2" maxLength="40" value={values.UserEmail} onChange={handleChange}
                         required />
                 </div>
             </fieldset>
-            <Link className="link auth__link auth__link_profile" to="#">Редактировать</Link>
-            <Link className="link auth__link auth__link_theme-red" to="#">Выйти из аккаунта</Link>
+            <button className={isValid ? "link auth__link auth__link_profile" :
+                'link auth__link auth__link_profile auth__submit_theme_disabled'} type="submit" disabled={!isValid}>Редактировать</button>
+            <Link className="link auth__link auth__link_theme-red" to="#" onClick={props.onSignOut}>Выйти из аккаунта</Link>
         </form>
     )
 }

@@ -1,3 +1,5 @@
+import { MoviesApiPath } from './constants';
+
 const handleResponse = (res) => {
     if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
@@ -24,6 +26,47 @@ class Api {
             method: "PATCH",
             headers: this._headers,
             body: JSON.stringify({ name, email }),
+        }).then(handleResponse);
+    };
+
+    getMovies() {
+        const url = `${this._baseUrl}/movies`;
+        return fetch(url, {
+            method: "GET",
+            headers: this._headers,
+        }).then(handleResponse);
+    };
+
+    createMovies({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailerLink,
+        thumbnail,
+        movieId,
+        nameRU,
+        nameEN
+    }) {
+        const url = `${this._baseUrl}/movies`;
+        return fetch(url, {
+            method: "POST",
+            headers: this._headers,
+            body: JSON.stringify({
+                country,
+                director,
+                duration,
+                year,
+                description,
+                image: MoviesApiPath + image.url,
+                trailer: trailerLink,
+                thumbnail: MoviesApiPath + image.formats.thumbnail.url,
+                movieId,
+                nameRU,
+                nameEN
+            }),
         }).then(handleResponse);
     };
 

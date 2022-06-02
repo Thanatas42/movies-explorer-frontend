@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchForm() {
+function SearchForm(props) {
     const [searchInput, setSearchInput] = React.useState('');
 
     function handleChangeSearchInput(e) {
@@ -15,7 +15,8 @@ function SearchForm() {
                     type="submit" disabled={searchInput.length === 0 ? true : false}>Поиск</button>
             </div>
             <div className="search__switch-container">
-                <input className="switch search__switch" type="checkbox" />
+                <input className="switch search__switch" type="checkbox" value={props.isShortFilms}
+                    onClick={() => { props.setIsShortFilms(props.isShortFilms ? false : true) }} />
                 <p className="seacrh__annotation">Короткометражки</p>
             </div>
         </form>

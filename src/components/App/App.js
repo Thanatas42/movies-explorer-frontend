@@ -7,6 +7,7 @@ import Register from '../Register/Register';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import { MoviesArrayContex } from '../../context/MoviesArrayContex';
+import { SavedMoviesArrayContex } from '../../context/SavedMoviesArrayContex';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Movies from '../Movies/Movies';
 import Error from '../ErrorPage/ErrorPage';
@@ -24,8 +25,9 @@ function App() {
   const [api, setApi] = useState(null);
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
   const [MoviesArray, setMoviesArray] = useState([]);
+  const [savedMoviesArray, setSavedMoviesArray] = useState([]);
   const [currentUser, setCurrentUser] = useState({ userName: "", userEmail: "", userId: "" });
-  const [resStatus, setResStatus] = useState(false);
+  const [resStatus, setResStatus] = useState(true);
   const history = useHistory();
 
   function handleNavigationClick() {
@@ -80,6 +82,36 @@ function App() {
       });
   };
 
+  function likedMovies({ country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    id,
+    nameRU,
+    nameEN }) {
+    api.createMovies({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      thumbnail: image.formats.thumbnail,
+      movieId: id,
+      nameRU,
+      nameEN
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const onReg = (emailInput, passwordInput, nameInput) => {
     return Auth.register(emailInput, passwordInput, nameInput).then((res) => {
@@ -117,6 +149,7 @@ function App() {
       return;
     }
     console.log("api is not null");
+    setResStatus(true);
 
     MoviesApi.getMoviesCard()
       .then((initialMovies) => {
@@ -124,50 +157,62 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(setResStatus(false));
+
+    api.getMovies()
+      .then((initialMovies) => {
+        setSavedMoviesArray(initialMovies);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(setResStatus(false));
 
   }, [api]);
 
   return (
     <>
       <MoviesArrayContex.Provider value={MoviesArray}>
-        <CurrentUserContext.Provider value={currentUser}>
-          <Header LogOn={loggedIn} onOpen={handleNavigationClick} />
-          <Switch>
-            <Route exact path="/">
-              <Main LogOn={loggedIn} />
-            </Route>
+        <SavedMoviesArrayContex.Provider value={savedMoviesArray}>
+          <CurrentUserContext.Provider value={currentUser}>
+            <Header LogOn={loggedIn} onOpen={handleNavigationClick} />
+            <Switch>
+              <Route exact path="/">
+                <Main LogOn={loggedIn} />
+              </Route>
 
-            <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} />
+              <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} likedMovies={likedMovies} />
 
-            <ProtectedRoute path="/profile" userName="Виталий" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
-              updateUser={handleUpdateUser} />
+              <ProtectedRoute path="/profile" userName="Виталий" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
+                updateUser={handleUpdateUser} />
 
-            <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} />
+              <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} />
 
-            <Route path="/signup">
-              <Register onReg={onReg} onLog={onLog} />
-            </Route>
+              <Route path="/signup">
+                <Register onReg={onReg} onLog={onLog} />
+              </Route>
 
-            <Route path="/signin">
-              <Login onLog={onLog} />
-            </Route>
-            <Route>
-              {loggedIn ? (
-                <Redirect to="/movies" />
-              ) : (
-                <Redirect to="/signin" />
-              )}
-            </Route>
-            <Route path="*">
-              <Error errCode="404" errName="Страница не найдена" />
-            </Route>
-          </Switch>
+              <Route path="/signin">
+                <Login onLog={onLog} />
+              </Route>
+              <Route>
+                {loggedIn ? (
+                  <Redirect to="/movies" />
+                ) : (
+                  <Redirect to="/signin" />
+                )}
+              </Route>
+              <Route path="*">
+                <Error errCode="404" errName="Страница не найдена" />
+              </Route>
+            </Switch>
 
-          <Footer />
+            <Footer />
 
-          <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
-        </CurrentUserContext.Provider>
+            <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
+          </CurrentUserContext.Provider>
+        </SavedMoviesArrayContex.Provider>
       </MoviesArrayContex.Provider>
     </>
   );

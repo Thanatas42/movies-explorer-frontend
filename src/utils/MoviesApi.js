@@ -1,4 +1,6 @@
-export const BASE_URL = "https://api.nomoreparties.co/beatfilm-movies";
+import { MoviesApiPath } from './constants';
+
+export const BASE_URL = MoviesApiPath + "/beatfilm-movies";
 
 const handleResponse = (res) => {
     if (!res.ok) {

@@ -14,6 +14,7 @@ body {
 @import url(./block/switch/switch.css);
 @import url(./block/button/button.css);
 @import url(./block/button/__button-still/button_theme-still.css);
+@import url(./block/button/__theme-hidden/button_theme-hidden.css);
 
 @import url(./block/error/error.css);
 @import url(./block/error/__tittle/error__tittle.css);

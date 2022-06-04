@@ -26,6 +26,8 @@ function App() {
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
   const [MoviesArray, setMoviesArray] = useState([]);
   const [savedMoviesArray, setSavedMoviesArray] = useState([]);
+  const [shortFilmsArray, setShortFilmsArray] = useState([]);
+  const [isShortFilms, setIsShortFilms] = useState(false);
   const [currentUser, setCurrentUser] = useState({ userName: "", userEmail: "", userId: "" });
   const [resStatus, setResStatus] = useState(true);
   const history = useHistory();
@@ -106,6 +108,8 @@ function App() {
       nameEN
     })
       .then((res) => {
+        console.log(res.movieId);
+        setSavedMoviesArray([res, ...savedMoviesArray]);
         console.log(res);
       })
       .catch((err) => {
@@ -126,13 +130,24 @@ function App() {
         throw new Error("Неправильные имя пользователя или пароль");
       if (res.token) {
         setLoggedIn(true);
-        setApi(createApi);
         localStorage.setItem("jwt", res.token);
+        setApi(createApi(res.token));
       }
     })
       .catch((err) => {
         console.log(err);
         setResStatus(false);
+      });
+  };
+
+  const deleteMovies = (movieId) => {
+    api.deleteMovies(movieId)
+      .then((res) => {
+        setSavedMoviesArray((savedMoviesArray) => savedMoviesArray.filter((c) => c.movieId !== movieId));
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -182,12 +197,14 @@ function App() {
                 <Main LogOn={loggedIn} />
               </Route>
 
-              <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} likedMovies={likedMovies} />
+              <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} likedMovies={likedMovies} deleteMovies={deleteMovies}
+                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} shortFilmsArray={shortFilmsArray} setShortFilmsArray={setShortFilmsArray} />
 
               <ProtectedRoute path="/profile" userName="Виталий" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
                 updateUser={handleUpdateUser} />
 
-              <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} />
+              <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
+                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
 
               <Route path="/signup">
                 <Register onReg={onReg} onLog={onLog} />

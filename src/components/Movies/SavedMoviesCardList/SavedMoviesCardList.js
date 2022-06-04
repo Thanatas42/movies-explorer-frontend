@@ -1,10 +1,10 @@
-import MoviesCard from '../MoviesCard/MoviesCard';
+import SavedMoviesCard from '../MoviesCard/SavedMoviesCard';
 import { useContext, useState, useEffect } from "react";
 import { MoviesArrayContex } from '../../../context/MoviesArrayContex';
 import { SavedMoviesArrayContex } from '../../../context/SavedMoviesArrayContex';
 import Preloader from '../../Preloader/Preloader';
 
-function MoviesCardList(props) {
+function SavedMoviesCardList(props) {
     const MoviesArray = useContext(MoviesArrayContex);
     const SavedMoviesArray = useContext(SavedMoviesArrayContex);
     const [windowWidth, setWindowWidth] = useState(window.screen.availWidth);
@@ -64,14 +64,14 @@ function MoviesCardList(props) {
         setMoviesToShow([...moviesToShow, ...slicedMovies]);
     };
 
-
     return (
         <>
             <ul className="cards" id="cards">
-                {props.resStatus ? <Preloader /> : moviesToShow.map((item) => {
-                    return <MoviesCard movies={item} key={item.id} likedMovies={props.likedMovies} deleteMovies={props.deleteMovies}
-                        isLiked={(SavedMoviesArray.map((i) => { return (i.movieId === item.id) }).includes(true))} />
-                })}
+                {props.resStatus ? <Preloader /> : SavedMoviesArray.map((item) => {
+                    return <SavedMoviesCard movies={item} key={item.movieId} likedMovies={props.likedMovies} deleteMovies={props.deleteMovies} />
+                })
+                }
+                <h4 className="cards__empty">Ничего не найдено</h4>
             </ul>
             <button className={moreLength === moviesToShow.length ? 'button button_theme-still button__theme-hidden'
                 : 'button button_theme-still'} onClick={props.isShortFilms ? handleShowMorePostsShortMovies : handleShowMorePosts}>Еще</button>
@@ -79,4 +79,4 @@ function MoviesCardList(props) {
     )
 }
 
-export default MoviesCardList;
+export default SavedMoviesCardList;

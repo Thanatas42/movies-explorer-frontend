@@ -1,11 +1,11 @@
 import SearchForm from '../Movies/SearchForm/SearchForm';
-import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import SavedMoviesCardList from '../Movies/SavedMoviesCardList/SavedMoviesCardList';
 
-function SavedMovies() {
+function SavedMovies(props) {
     return (
         <>
-            <SearchForm />
-            <MoviesCardList />
+            <SearchForm isShortFilms={props.isShortFilms} setIsShortFilms={props.setIsShortFilms}/>
+            <SavedMoviesCardList resStatus={props.resStatus} deleteMovies={props.deleteMovies}/>
         </>
     )
 }

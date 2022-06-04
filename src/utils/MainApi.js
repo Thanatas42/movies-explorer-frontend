@@ -70,7 +70,15 @@ class Api {
         }).then(handleResponse);
     };
 
+    deleteMovies(movieId) {
+        const url = `${this._baseUrl}/movies/${movieId}`;
+        return fetch(url, {
+            headers: this._headers,
+            method: "DELETE",
+        }).then(handleResponse);
+    }
 }
+
 
 const createApi = (token) => new Api({
     baseUrl: "https://api.movies-dmitry.nomoredomains.rocks",

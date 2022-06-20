@@ -166,18 +166,24 @@ function App() {
     console.log("api is not null");
     setResStatus(true);
 
-    MoviesApi.getMoviesCard()
+    api.getMovies()
       .then((initialMovies) => {
-        setMoviesArray(initialMovies);
+        setSavedMoviesArray(initialMovies);
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(setResStatus(false));
 
-    api.getMovies()
+    MoviesApi.getMoviesCard()
       .then((initialMovies) => {
-        setSavedMoviesArray(initialMovies);
+        initialMovies.map((item) => { return item.isLiked = false; });
+        savedMoviesArray.map((item) => {
+          const found = initialMovies.findIndex(с => с.id === item.movieId);
+          return initialMovies[found].isLiked = true;
+        });
+
+        setMoviesArray(initialMovies);
       })
       .catch((err) => {
         console.log(err);

@@ -1,10 +1,9 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useContext, useState } from "react";
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Profile(props) {
     const currentUser = useContext(CurrentUserContext);
-    const history = useHistory();
     const [values, setValues] = useState({ UserName: currentUser.userName, UserEmail: currentUser.userEmail });
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);

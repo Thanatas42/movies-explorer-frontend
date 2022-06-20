@@ -10,12 +10,14 @@ function MoviesCardList(props) {
     const [windowWidth, setWindowWidth] = useState(window.screen.availWidth);
     const [moviesToShow, setMoviesToShow] = useState([]);
 
+    //console.log(SavedMoviesArray, MoviesArray);
+
     let shortMovies = MoviesArray.filter((item) => { return item.duration <= 40 });
     let moreLength = props.isShortFilms ? shortMovies.length : MoviesArray.length;
     let drawingСards;
     let moreIteration;
 
-    if (windowWidth >= 768) {
+    /*if (windowWidth >= 768) {
         drawingСards = 12;
         moreIteration = 7;
     } else if (windowWidth <= 768 && windowWidth > 480) {
@@ -62,19 +64,17 @@ function MoviesCardList(props) {
         const slicedMovies = MoviesArray.filter(shortMovies.slice(moviesToShow.length, moviesToShow.length + moreIteration));
 
         setMoviesToShow([...moviesToShow, ...slicedMovies]);
-    };
+    };*/
 
 
     return (
         <>
             <ul className="cards" id="cards">
-                {props.resStatus ? <Preloader /> : moviesToShow.map((item) => {
+                {MoviesArray.map((item) => {
                     return <MoviesCard movies={item} key={item.id} likedMovies={props.likedMovies} deleteMovies={props.deleteMovies}
-                        isLiked={(SavedMoviesArray.map((i) => { return (i.movieId === item.id) }).includes(true))} />
+                        isLiked={item.isLiked} />
                 })}
             </ul>
-            <button className={moreLength === moviesToShow.length ? 'button button_theme-still button__theme-hidden'
-                : 'button button_theme-still'} onClick={props.isShortFilms ? handleShowMorePostsShortMovies : handleShowMorePosts}>Еще</button>
         </>
     )
 }

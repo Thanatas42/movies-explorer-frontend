@@ -29,7 +29,7 @@ function App() {
   const [shortFilmsArray, setShortFilmsArray] = useState([]);
   const [isShortFilms, setIsShortFilms] = useState(false);
   const [currentUser, setCurrentUser] = useState({ userName: "", userEmail: "", userId: "" });
-  const [resStatus, setResStatus] = useState(true);
+  const [resStatus, setResStatus] = useState(false);
   const history = useHistory();
 
   function handleNavigationClick() {
@@ -108,7 +108,7 @@ function App() {
       nameEN
     })
       .then((res) => {
-        console.log(res.movieId);
+        MoviesArray.find(c => c.id === id).isLiked = true;
         setSavedMoviesArray([res, ...savedMoviesArray]);
         console.log(res);
       })
@@ -136,13 +136,13 @@ function App() {
     })
       .catch((err) => {
         console.log(err);
-        setResStatus(false);
       });
   };
 
   const deleteMovies = (movieId) => {
     api.deleteMovies(movieId)
       .then((res) => {
+        MoviesArray.find(c => c.id === movieId).isLiked = false;
         setSavedMoviesArray((savedMoviesArray) => savedMoviesArray.filter((c) => c.movieId !== movieId));
         console.log(res);
       })
@@ -166,30 +166,21 @@ function App() {
     console.log("api is not null");
     setResStatus(true);
 
-    api.getMovies()
-      .then((initialMovies) => {
-        setSavedMoviesArray(initialMovies);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(setResStatus(false));
+    Promise.all([api.getMovies(), MoviesApi.getMoviesCard()])
+      .then(([initialSavedMovies, initialMovies]) => {
+        setSavedMoviesArray(initialSavedMovies);
+        let resultArray = initialMovies.map((item) => {
+          let found = initialSavedMovies.find(c => c.movieId === item.id)
+          found ? item.isLiked = true : item.isLiked = false;
 
-    MoviesApi.getMoviesCard()
-      .then((initialMovies) => {
-        initialMovies.map((item) => { return item.isLiked = false; });
-        savedMoviesArray.map((item) => {
-          const found = initialMovies.findIndex(с => с.id === item.movieId);
-          return initialMovies[found].isLiked = true;
+          return item;
         });
-
-        setMoviesArray(initialMovies);
+        setMoviesArray(resultArray);
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(setResStatus(false));
-
   }, [api]);
 
   return (

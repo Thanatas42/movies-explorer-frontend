@@ -6,36 +6,30 @@ import Preloader from '../../Preloader/Preloader';
 
 function MoviesCardList(props) {
     const MoviesArray = useContext(MoviesArrayContex);
-    const SavedMoviesArray = useContext(SavedMoviesArrayContex);
     const [windowWidth, setWindowWidth] = useState(window.screen.availWidth);
-    const [moviesToShow, setMoviesToShow] = useState([]);
 
-    //console.log(SavedMoviesArray, MoviesArray);
+
+
+    const SavedMoviesArray = useContext(SavedMoviesArrayContex);
+
+    const [moviesToShow, setMoviesToShow] = useState([]);
 
     let shortMovies = MoviesArray.filter((item) => { return item.duration <= 40 });
     let moreLength = props.isShortFilms ? shortMovies.length : MoviesArray.length;
-    let drawingСards;
-    let moreIteration;
 
-    /*if (windowWidth >= 768) {
+    let drawingСards;
+    let moreCountCards;
+
+    if (windowWidth >= 768) {
         drawingСards = 12;
-        moreIteration = 7;
+        moreCountCards = 3;
     } else if (windowWidth <= 768 && windowWidth > 480) {
         drawingСards = 8;
-        moreIteration = 7;
+        moreCountCards = 2;
     } else {
         drawingСards = 5;
-        moreIteration = 5;
+        moreCountCards = 2;
     }
-
-    useEffect(() => {
-        if (MoviesArray !== []) {
-            if (!props.isShortFilms)
-                setMoviesToShow(MoviesArray.slice(0, drawingСards));
-            else if (props.isShortFilms)
-                setMoviesToShow(shortMovies.slice(0, drawingСards));
-        }
-    }, [MoviesArray, SavedMoviesArray, drawingСards, props.isShortFilms]);
 
     (function () {
         window.addEventListener("resize", resizeThrottler, false);
@@ -55,26 +49,37 @@ function MoviesCardList(props) {
         }
     }());
 
+    useEffect(() => {
+        if (MoviesArray !== []) {
+            if (!props.isShortFilms)
+                setMoviesToShow(MoviesArray.slice(0, drawingСards));
+            else if (props.isShortFilms)
+                setMoviesToShow(shortMovies.slice(0, drawingСards));
+        }
+    }, [MoviesArray, SavedMoviesArray, drawingСards, props.isShortFilms]);
+
     function handleShowMorePosts() {
-        const slicedMovies = MoviesArray.slice(moviesToShow.length, moviesToShow.length + moreIteration);
+        const slicedMovies = MoviesArray.slice(moviesToShow.length, moviesToShow.length);
         setMoviesToShow([...moviesToShow, ...slicedMovies]);
     };
 
     function handleShowMorePostsShortMovies() {
-        const slicedMovies = MoviesArray.filter(shortMovies.slice(moviesToShow.length, moviesToShow.length + moreIteration));
+        const slicedMovies = MoviesArray.filter(shortMovies.slice(moviesToShow.length, moviesToShow.length));
 
         setMoviesToShow([...moviesToShow, ...slicedMovies]);
-    };*/
-
+    };
 
     return (
         <>
             <ul className="cards" id="cards">
-                {MoviesArray.map((item) => {
-                    return <MoviesCard movies={item} key={item.id} likedMovies={props.likedMovies} deleteMovies={props.deleteMovies}
-                        isLiked={item.isLiked} />
-                })}
+                {props.resStatus ? <Preloader /> :
+                    MoviesArray.slice(0, drawingСards).map((item) => {
+                        return <MoviesCard movies={item} key={item.id} likedMovies={props.likedMovies} deleteMovies={props.deleteMovies}
+                            isLiked={item.isLiked} />
+                    })}
             </ul>
+            <button className={MoviesArray.length === moviesToShow.length ? 'button button_theme-still button__theme-hidden'
+                : 'button button_theme-still'} onClick={handleShowMorePosts}>Еще</button>
         </>
     )
 }

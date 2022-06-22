@@ -7,8 +7,8 @@ function Movies(props) {
     return (
         <>
             <SearchForm isShortFilms={props.isShortFilms} setIsShortFilms={props.setIsShortFilms} />
-            <MoviesCardList resStatus={props.resStatus} likedMovies={props.likedMovies} deleteMovies={props.deleteMovies}
-                isShortFilms={props.isShortFilms} />
+            <MoviesCardList resStatus={props.resStatus} likedMovies={props.likedMovies}
+                deleteMovies={props.deleteMovies} isShortFilms={props.isShortFilms} />
         </>
     )
 }

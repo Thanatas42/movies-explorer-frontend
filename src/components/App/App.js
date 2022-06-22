@@ -197,7 +197,7 @@ function App() {
               <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} likedMovies={likedMovies} deleteMovies={deleteMovies}
                 isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} shortFilmsArray={shortFilmsArray} setShortFilmsArray={setShortFilmsArray} />
 
-              <ProtectedRoute path="/profile" userName="Виталий" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
+              <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
                 updateUser={handleUpdateUser} />
 
               <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}

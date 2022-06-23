@@ -6,6 +6,7 @@ import Preloader from '../../Preloader/Preloader';
 function MoviesCardList(props) {
     const MoviesArray = useContext(MoviesArrayContex);
     const [windowWidth, setWindowWidth] = useState(window.screen.availWidth);
+    const [resultMovies, setResultMovies] = useState([]);
     const [moviesToShow, setMoviesToShow] = useState([]);
 
     let drawingСards;
@@ -42,12 +43,17 @@ function MoviesCardList(props) {
 
     useEffect(() => {
         if (MoviesArray !== []) {
+            setResultMovies(MoviesArray);
             setMoviesToShow(MoviesArray.slice(0, drawingСards));
         }
-    }, [MoviesArray, drawingСards]);
+        if (props.isShortFilms) {
+            setResultMovies(MoviesArray.filter(c => c.duration <= 40));
+            setMoviesToShow(MoviesArray.filter(c => c.duration <= 40).slice(0, drawingСards));
+        }
+    }, [MoviesArray, drawingСards, props.isShortFilms]);
 
     function handleShowMorePosts() {
-        const slicedMovies = MoviesArray.slice(moviesToShow.length, moviesToShow.length + moreCountCards);
+        const slicedMovies = resultMovies.slice(moviesToShow.length, moviesToShow.length + moreCountCards);
         setMoviesToShow([...moviesToShow, ...slicedMovies]);
     };
 
@@ -59,7 +65,7 @@ function MoviesCardList(props) {
                         deleteMovies={props.deleteMovies} isLiked={item.isLiked} />
                 })}
             </ul>
-            <button className={MoviesArray.length === moviesToShow.length ? 'button button_theme-still button__theme-hidden'
+            <button className={resultMovies.length === moviesToShow.length ? 'button button_theme-still button__theme-hidden'
                 : 'button button_theme-still'} onClick={handleShowMorePosts}>Еще</button>
         </>
     )

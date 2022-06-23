@@ -43,7 +43,6 @@ function SavedMoviesCardList(props) {
     useEffect(() => {
         if (SavedMoviesArray !== []) {
             setMoviesToShow(SavedMoviesArray.slice(0, drawingСards));
-            console.log(SavedMoviesArray);
         }
     }, [SavedMoviesArray, drawingСards]);
 

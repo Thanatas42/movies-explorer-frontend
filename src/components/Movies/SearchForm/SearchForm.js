@@ -1,4 +1,5 @@
 import React from "react";
+import { useCallback } from "react";
 
 function SearchForm(props) {
     const [searchInput, setSearchInput] = React.useState('');
@@ -6,6 +7,13 @@ function SearchForm(props) {
     function handleChangeSearchInput(e) {
         setSearchInput(e.target.value);
     }
+
+    const memoizedCallback = useCallback(
+        () => {
+            props.setIsShortFilms(props.isShortFilms ? false : true)
+        },
+        [props.isShortFilms],
+    );
 
     return (
         <form className="search">
@@ -15,7 +23,7 @@ function SearchForm(props) {
                     type="submit" disabled={searchInput.length === 0 ? true : false}>Поиск</button>
             </div>
             <div className="search__switch-container">
-                <input className="switch search__switch" type="checkbox" value={props.isShortFilms}
+                <input className="switch search__switch" type="checkbox" value={memoizedCallback}
                     onClick={() => { props.setIsShortFilms(props.isShortFilms ? false : true) }} />
                 <p className="seacrh__annotation">Короткометражки</p>
             </div>
@@ -23,4 +31,4 @@ function SearchForm(props) {
     )
 }
 
-export default SearchForm;
+export default React.memo(SearchForm)

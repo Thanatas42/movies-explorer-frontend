@@ -5,7 +5,7 @@ function SavedMovies(props) {
     return (
         <>
             <SearchForm isShortFilms={props.isShortFilms} setIsShortFilms={props.setIsShortFilms}/>
-            <SavedMoviesCardList resStatus={props.resStatus} deleteMovies={props.deleteMovies}/>
+            <SavedMoviesCardList resStatus={props.resStatus} deleteMovies={props.deleteMovies} isShortFilms={props.isShortFilms}/>
         </>
     )
 }

@@ -26,7 +26,6 @@ function App() {
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
   const [MoviesArray, setMoviesArray] = useState([]);
   const [savedMoviesArray, setSavedMoviesArray] = useState([]);
-  const [shortFilmsArray, setShortFilmsArray] = useState([]);
   const [isShortFilms, setIsShortFilms] = useState(false);
   const [currentUser, setCurrentUser] = useState({ userName: "", userEmail: "", userId: "" });
   const [resStatus, setResStatus] = useState(false);
@@ -195,13 +194,13 @@ function App() {
               </Route>
 
               <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} likedMovies={likedMovies} deleteMovies={deleteMovies}
-                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} shortFilmsArray={shortFilmsArray} setShortFilmsArray={setShortFilmsArray} />
-
-              <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
-                updateUser={handleUpdateUser} />
+                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
 
               <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
                 isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
+
+              <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
+                updateUser={handleUpdateUser} />
 
               <Route path="/signup">
                 <Register onReg={onReg} onLog={onLog} />

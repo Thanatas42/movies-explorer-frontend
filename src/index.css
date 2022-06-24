@@ -12,6 +12,7 @@ body {
 @import url(./vendor/inter/inter.css);
 @import url(./block/link/link.css);
 @import url(./block/switch/switch.css);
+@import url(./block/switch/_theme_active/switch_theme_active.css);
 @import url(./block/button/button.css);
 @import url(./block/button/__button-still/button_theme-still.css);
 @import url(./block/button/__theme-hidden/button_theme-hidden.css);

@@ -1,71 +1,31 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
-import { useContext, useState, useEffect } from "react";
-import { MoviesArrayContex } from '../../../context/MoviesArrayContex';
 import Preloader from '../../Preloader/Preloader';
 
 function MoviesCardList(props) {
-    const MoviesArray = useContext(MoviesArrayContex);
-    const [windowWidth, setWindowWidth] = useState(window.screen.availWidth);
-    const [resultMovies, setResultMovies] = useState([]);
-    const [moviesToShow, setMoviesToShow] = useState([]);
-
-    let drawingСards;
-    let moreCountCards;
-
-    if (windowWidth >= 768) {
-        drawingСards = 12;
-        moreCountCards = 3;
-    } else if (windowWidth <= 768 && windowWidth > 480) {
-        drawingСards = 8;
-        moreCountCards = 2;
-    } else {
-        drawingСards = 5;
-        moreCountCards = 2;
-    }
-
-    (function () {
-        window.addEventListener("resize", resizeThrottler, false);
-
-        var resizeTimeout;
-        function resizeThrottler() {
-            if (!resizeTimeout) {
-                resizeTimeout = setTimeout(function () {
-                    resizeTimeout = null;
-                    actualResizeHandler();
-                }, 66);
-            }
-        }
-
-        function actualResizeHandler() {
-            setWindowWidth(window.screen.availWidth);
-        }
-    }());
-
-    useEffect(() => {
-        if (MoviesArray !== []) {
-            setResultMovies(MoviesArray);
-            setMoviesToShow(MoviesArray.slice(0, drawingСards));
-        }
-        if (props.isShortFilms) {
-            setResultMovies(MoviesArray.filter(c => c.duration <= 40));
-            setMoviesToShow(MoviesArray.filter(c => c.duration <= 40).slice(0, drawingСards));
-        }
-    }, [MoviesArray, drawingСards, props.isShortFilms]);
 
     function handleShowMorePosts() {
-        const slicedMovies = resultMovies.slice(moviesToShow.length, moviesToShow.length + moreCountCards);
-        setMoviesToShow([...moviesToShow, ...slicedMovies]);
+        const slicedMovies = props.moviesInMemory.slice(props.moviesToShow.length, props.moviesToShow.length + props.moreCountCards);
+        props.setMoviesToShow([...props.moviesToShow, ...slicedMovies]);
     };
 
+    function getResultBlock() {
+        if (!props.resStatus && props.moviesInMemory.length > 0)
+            return props.moviesToShow.map((item) => {
+                return <MoviesCard movies={item} key={item.id} likedMovies={props.likedMovies}
+                    deleteMovies={props.deleteMovies} isLiked={item.isLiked} />
+            })
+        else if (props.resStatus)
+            return <Preloader />
+        else if (props.moviesInMemory.length === 0)
+            return <p className='cards__empty'>Ничего не найдено</p>
+    }
+    
     return (
         <>
             <ul className="cards" id="cards">
-                {props.resStatus ? <Preloader /> : moviesToShow.map((item) => {
-                    return <MoviesCard movies={item} key={item.id} likedMovies={props.likedMovies}
-                        deleteMovies={props.deleteMovies} isLiked={item.isLiked} />
-                })}
+                {getResultBlock()}
             </ul>
-            <button className={resultMovies.length === moviesToShow.length ? 'button button_theme-still button__theme-hidden'
+            <button className={props.moviesInMemory.length === props.moviesToShow.length ? 'button button_theme-still button__theme-hidden'
                 : 'button button_theme-still'} onClick={handleShowMorePosts}>Еще</button>
         </>
     )

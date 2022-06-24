@@ -1,0 +1,7 @@
+.switch_theme_active {
+    background: #3DDC84;
+}
+
+.switch_theme_active:before {
+    left: 60%;
+}

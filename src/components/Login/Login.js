@@ -45,12 +45,10 @@ function Login({ onLog }) {
         }
     }, [history]);
 
-
     const getValue = useCallback((obj, nameProp) => {
         let { [nameProp]: email = '' } = obj;
         return email;
-    }
-    );
+    });
 
     return (
         <form className="auth" onSubmit={handleSubmit}>

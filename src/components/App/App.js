@@ -57,30 +57,19 @@ function App() {
       });
   };
 
+  const jwt = localStorage.getItem("jwt");
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
     if (jwt) {
       auth(jwt);
     }
-  }, []);
+  }, [jwt]);
 
   useEffect(() => {
     if (loggedIn) history.push("/movies");
   }, [loggedIn, history]);
 
   function handleUpdateUser(name, email) {
-    api.updateUser(name, email)
-      .then(() => {
-        setCurrentUser({
-          userName: name,
-          userEmail: email,
-          userId: currentUser._id
-        });
-        history.push("/movies");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return api.updateUser(name, email);
   };
 
   function likedMovies({ country,
@@ -117,22 +106,24 @@ function App() {
   };
 
   const onReg = (emailInput, passwordInput, nameInput) => {
-    return Auth.register(emailInput, passwordInput, nameInput).then((res) => {
-      if (!res) throw new Error("Что-то пошло не так");
-      return res;
-    });
+    return Auth.register(emailInput, passwordInput, nameInput)
+      .then((res) => {
+        if (!res) throw new Error("Что-то пошло не так");
+        return res;
+      });
   };
 
   const onLog = (emailInput, passwordInput) => {
-    return Auth.authorize(emailInput, passwordInput).then((res) => {
-      if (!res || !res.token)
-        throw new Error("Неправильные имя пользователя или пароль");
-      if (res.token) {
-        setLoggedIn(true);
-        localStorage.setItem("jwt", res.token);
-        setApi(createApi(res.token));
-      }
-    })
+    return Auth.authorize(emailInput, passwordInput)
+      .then((res) => {
+        if (!res || !res.token)
+          throw new Error("Неправильные имя пользователя или пароль");
+        if (res.token) {
+          setLoggedIn(true);
+          localStorage.setItem("jwt", res.token);
+          setApi(createApi(res.token));
+        }
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -200,7 +191,7 @@ function App() {
                 isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
 
               <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
-                updateUser={handleUpdateUser} />
+                updateUser={handleUpdateUser} setCurrentUser={setCurrentUser}/>
 
               <Route path="/signup">
                 <Register onReg={onReg} onLog={onLog} />
@@ -213,7 +204,7 @@ function App() {
                 {loggedIn ? (
                   <Redirect to="/movies" />
                 ) : (
-                  <Redirect to="/signin" />
+                  <Redirect to="/" />
                 )}
               </Route>
               <Route path="*">

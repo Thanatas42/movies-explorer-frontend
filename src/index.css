@@ -117,6 +117,7 @@ body {
 @import url(./block/auth/__input/_profile/auth__input_profile.css);
 @import url(./block/auth/__title/_profile/auth__title_profile.css);
 @import url(./block/auth/__link/_profile/auth__link_profile.css);
+@import url(./block/auth/__text/_update/auth__text_update.css);
 @import url(./block/auth/__link/_theme-red/auth__link_theme-red.css);
 @import url(./block/auth/__container/_profile/auth__container_profile.css);
 

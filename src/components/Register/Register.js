@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/header__logo.svg';
-import { regexEmail } from '../../utils/constants';
+import { RegexEmail } from '../../utils/constants';
 import Footer from '../Footer/Footer';
 
 
@@ -19,7 +19,7 @@ function Register({ onReg, onLog }) {
         setValues({ ...values, [name]: value });
 
         if (target.name === 'UserEmail') {
-            const regex = regexEmail;
+            const regex = RegexEmail;
             if (!regex.test(target.value)) {
                 target.style = "color: #EE3465";
                 setIsValid(regex.test(target.value));

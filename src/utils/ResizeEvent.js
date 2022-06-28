@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { cardScreenParams } from './constants';
+import { СardScreenParams } from './constants';
 
 function ResizeEvent() {
     const [windowWidth, setWindowWidth] = useState(window.screen.availWidth);
@@ -8,7 +8,7 @@ function ResizeEvent() {
     let moreCountCards;
     let { cardsOnScreenSize1280, cardsAddScreenSize1280,
         cardsOnScreenSize768, cardsAddScreenSize768,
-        cardsOnScreenSize480 } = cardScreenParams;
+        cardsOnScreenSize480 } = СardScreenParams;
 
     if (windowWidth >= 768) {
         drawingСards = cardsOnScreenSize1280;

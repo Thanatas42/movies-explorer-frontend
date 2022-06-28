@@ -25,7 +25,7 @@ function App() {
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
   const [MoviesArray, setMoviesArray] = useState([]);
   const [savedMoviesArray, setSavedMoviesArray] = useState([]);
-  const [isShortFilms, setIsShortFilms] = useState(false);
+  const [isShortFilms, setIsShortFilms] = useState(localStorage.getItem('isShortFilms') ? true : false);
   const [currentUser, setCurrentUser] = useState({ userName: "", userEmail: "", userId: "" });
   const [resStatus, setResStatus] = useState(false);
   const history = useHistory();
@@ -140,6 +140,9 @@ function App() {
 
   const onSignOut = () => {
     localStorage.removeItem("jwt");
+    localStorage.removeItem('searchInput');
+    localStorage.removeItem('isShortFilms');
+    localStorage.clear();
     setLoggedIn(false);
     setApi(null);
     history.push("/signin");
@@ -153,6 +156,7 @@ function App() {
     }
     console.log("api is not null");
 
+    setResStatus(true);
     Promise.all([api.getMovies(), MoviesApi.getMoviesCard()])
       .then(([initialSavedMovies, initialMovies]) => {
         setSavedMoviesArray(initialSavedMovies);
@@ -185,7 +189,7 @@ function App() {
                 deleteMovies={deleteMovies} isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
 
               <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
-                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} />
+                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} savedMoviesArray={savedMoviesArray}/>
 
               <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
                 updateUser={handleUpdateUser} setCurrentUser={setCurrentUser} currentUser={currentUser} />

@@ -3,7 +3,8 @@ import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import { useContext, useState, useEffect } from "react";
 import { MoviesArrayContex } from '../../context/MoviesArrayContex';
-import resizeEvent from '../../utils/ResizeEvent';
+import resizeEvent from '../../utils/resizeEvent';
+import Footer from '../Footer/Footer';
 
 function Movies(props) {
     const MoviesArray = useContext(MoviesArrayContex);
@@ -24,19 +25,19 @@ function Movies(props) {
     }, [MoviesArray, drawingСards, props.isShortFilms]);
 
     function handleSubmitSearch(sortString) {
-        const regex = RegExp(sortString);
+        const regex = RegExp(`${sortString}`, 'gi');
 
-        setMoviesInMemory(MoviesArray.filter((elem, index) => {
+        setMoviesInMemory(MoviesArray.filter((elem) => {
             return regex.test(elem.nameRU);
         }));
-        setMoviesToShow(MoviesArray.filter((elem, index) => {
+        setMoviesToShow(MoviesArray.filter((elem) => {
             return regex.test(elem.nameRU);
         }).slice(0, drawingСards));
         if (props.isShortFilms) {
-            setMoviesInMemory(MoviesArray.filter((elem, index) => {
+            setMoviesInMemory(MoviesArray.filter((elem) => {
                 return regex.test(elem.nameRU) && elem.duration <= 40;
             }));
-            setMoviesToShow(MoviesArray.filter((elem, index) => {
+            setMoviesToShow(MoviesArray.filter((elem) => {
                 return regex.test(elem.nameRU) && elem.duration <= 40;
             }).slice(0, drawingСards));
         }
@@ -45,10 +46,9 @@ function Movies(props) {
     return (
         <>
             <SearchForm isShortFilms={props.isShortFilms} setIsShortFilms={props.setIsShortFilms} handleSubmitSearch={handleSubmitSearch} />
-            <MoviesCardList resStatus={props.resStatus} likedMovies={props.likedMovies}
-                deleteMovies={props.deleteMovies} isShortFilms={props.isShortFilms} drawingСards={drawingСards}
-                moreCountCards={moreCountCards} moviesInMemory={moviesInMemory} moviesToShow={moviesToShow} setMoviesToShow={setMoviesToShow}
-            />
+            <MoviesCardList resStatus={props.resStatus} likedMovies={props.likedMovies} deleteMovies={props.deleteMovies}
+                moreCountCards={moreCountCards} moviesInMemory={moviesInMemory} moviesToShow={moviesToShow} setMoviesToShow={setMoviesToShow} />
+            <Footer />
         </>
     )
 }

@@ -2,6 +2,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../../Preloader/Preloader';
 
 function MoviesCardList(props) {
+    let isMount = props.resStatus;
 
     function handleShowMorePosts() {
         const slicedMovies = props.moviesInMemory.slice(props.moviesToShow.length, props.moviesToShow.length + props.moreCountCards);
@@ -9,17 +10,22 @@ function MoviesCardList(props) {
     };
 
     function getResultBlock() {
-        if (!props.resStatus && props.moviesInMemory.length > 0)
-            return props.moviesToShow.map((item) => {
+        if (props.moviesToShow.length > 0) {
+            let result = props.moviesToShow.map((item) => {
                 return <MoviesCard movies={item} key={item.id} likedMovies={props.likedMovies}
                     deleteMovies={props.deleteMovies} isLiked={item.isLiked} />
-            })
-        else if (props.resStatus)
-            return <Preloader />
-        else if (props.moviesInMemory.length === 0)
+            });
+            isMount = false;
+            return result;
+        }
+        else if (props.moviesToShow.length === 0 && !isMount)
             return <p className='cards__empty'>Ничего не найдено</p>
+        /*else if (isMount) {
+            isMount = false;
+            return <Preloader />
+        }*/
     }
-    
+
     return (
         <>
             <ul className="cards" id="cards">

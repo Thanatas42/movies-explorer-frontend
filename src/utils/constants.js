@@ -1,5 +1,6 @@
 const HeaderPathLists = ["/", "/movies", "/saved-movies"];
 const MoviesApiPath = "https://api.nomoreparties.co";
+const regexEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const cardScreenParams = {
     cardsOnScreenSize1280: 12,
@@ -13,5 +14,6 @@ const cardScreenParams = {
 export {
     HeaderPathLists,
     MoviesApiPath,
-    cardScreenParams
+    cardScreenParams,
+    regexEmail
 };

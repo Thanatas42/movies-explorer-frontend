@@ -3,7 +3,8 @@ import SearchForm from '../Movies/SearchForm/SearchForm';
 import SavedMoviesCardList from '../Movies/SavedMoviesCardList/SavedMoviesCardList';
 import { useContext, useState, useEffect } from "react";
 import { SavedMoviesArrayContex } from '../../context/SavedMoviesArrayContex';
-import resizeEvent from '../../utils/ResizeEvent';
+import resizeEvent from '../../utils/resizeEvent';
+import Footer from '../Footer/Footer';
 
 function SavedMovies(props) {
     const SavedMoviesArray = useContext(SavedMoviesArrayContex);
@@ -46,11 +47,11 @@ function SavedMovies(props) {
 
     return (
         <>
-            <SearchForm isShortFilms={props.isShortFilms} setIsShortFilms={props.setIsShortFilms} handleSubmitSearch={handleSubmitSearch}/>
-            <SavedMoviesCardList resStatus={props.resStatus} deleteMovies={props.deleteMovies} isShortFilms={props.isShortFilms} 
-            moreCountCards={moreCountCards} moviesToShow={moviesToShow} moviesInMemory={moviesInMemory} setMoviesToShow={setMoviesToShow}
-            SavedMoviesArray={SavedMoviesArray}
-            />
+            <SearchForm isShortFilms={props.isShortFilms} setIsShortFilms={props.setIsShortFilms} handleSubmitSearch={handleSubmitSearch} />
+            <SavedMoviesCardList resStatus={props.resStatus} deleteMovies={props.deleteMovies} isShortFilms={props.isShortFilms}
+                moreCountCards={moreCountCards} moviesToShow={moviesToShow} moviesInMemory={moviesInMemory} setMoviesToShow={setMoviesToShow}
+                SavedMoviesArray={SavedMoviesArray} setResStatus={props.setResStatus} />
+            <Footer />
         </>
     )
 }

@@ -1,10 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
 import Main from '../Main/Main';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
-import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import { MoviesArrayContex } from '../../context/MoviesArrayContex';
 import { SavedMoviesArrayContex } from '../../context/SavedMoviesArrayContex';
@@ -21,7 +20,7 @@ import * as MoviesApi from '../../utils/MoviesApi';
 import './App.css';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [api, setApi] = useState(null);
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
   const [MoviesArray, setMoviesArray] = useState([]);
@@ -30,6 +29,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({ userName: "", userEmail: "", userId: "" });
   const [resStatus, setResStatus] = useState(false);
   const history = useHistory();
+  const location = useLocation();
 
   function handleNavigationClick() {
     setNavigationPopupOpen(true);
@@ -39,7 +39,15 @@ function App() {
     setNavigationPopupOpen(false);
   }
 
-  const auth = (jwt) => {
+  const jwt = localStorage.getItem("jwt");
+  useEffect(() => {
+    if (jwt) {
+      auth(localStorage.getItem("jwt"));
+    } else
+      setLoggedIn(false);
+  }, [jwt]);
+
+  function auth(jwt) {
     Auth.getContent(jwt)
       .then((res) => {
         if (res) {
@@ -56,17 +64,6 @@ function App() {
         console.log(err);
       });
   };
-
-  const jwt = localStorage.getItem("jwt");
-  useEffect(() => {
-    if (jwt) {
-      auth(jwt);
-    }
-  }, [jwt]);
-
-  useEffect(() => {
-    if (loggedIn) history.push("/movies");
-  }, [loggedIn, history]);
 
   function handleUpdateUser(name, email) {
     return api.updateUser(name, email);
@@ -119,9 +116,9 @@ function App() {
         if (!res || !res.token)
           throw new Error("Неправильные имя пользователя или пароль");
         if (res.token) {
-          setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
           setApi(createApi(res.token));
+          setLoggedIn(true);
         }
       })
       .catch((err) => {
@@ -148,13 +145,13 @@ function App() {
     history.push("/signin");
   };
 
+
   useEffect(() => {
     if (!api) {
       console.log("api is null");
       return;
     }
     console.log("api is not null");
-    setResStatus(true);
 
     Promise.all([api.getMovies(), MoviesApi.getMoviesCard()])
       .then(([initialSavedMovies, initialMovies]) => {
@@ -170,8 +167,8 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
-      .finally(setResStatus(false));
   }, [api]);
+
 
   return (
     <>
@@ -181,17 +178,17 @@ function App() {
             <Header LogOn={loggedIn} onOpen={handleNavigationClick} />
             <Switch>
               <Route exact path="/">
-                <Main LogOn={loggedIn} />
+                <Main />
               </Route>
 
-              <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} likedMovies={likedMovies} deleteMovies={deleteMovies}
-                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
+              <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} setResStatus={setResStatus} likedMovies={likedMovies}
+                deleteMovies={deleteMovies} isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
 
               <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
-                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
+                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} />
 
               <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
-                updateUser={handleUpdateUser} setCurrentUser={setCurrentUser}/>
+                updateUser={handleUpdateUser} setCurrentUser={setCurrentUser} currentUser={currentUser} />
 
               <Route path="/signup">
                 <Register onReg={onReg} onLog={onLog} />
@@ -200,19 +197,19 @@ function App() {
               <Route path="/signin">
                 <Login onLog={onLog} />
               </Route>
+
+              <Route path="*">
+                <Error errCode="404" errName="Страница не найдена" />
+              </Route>
+
               <Route>
                 {loggedIn ? (
-                  <Redirect to="/movies" />
+                  <Redirect to={location.pathname} />
                 ) : (
                   <Redirect to="/" />
                 )}
               </Route>
-              <Route path="*">
-                <Error errCode="404" errName="Страница не найдена" />
-              </Route>
             </Switch>
-
-            <Footer />
 
             <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
           </CurrentUserContext.Provider>

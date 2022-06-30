@@ -6,6 +6,6 @@
 
 @media screen and (min-width: 1280px) {
     .auth__container_profile {
-        min-height: calc(100vh - 250px);
+        min-height: calc(100vh - 330px);
     }
 }

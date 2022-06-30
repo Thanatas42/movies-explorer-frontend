@@ -1,15 +1,14 @@
-import React, { useCallback } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import React, { useCallback, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import logo from '../../images/header__logo.svg';
 import { RegexEmail } from '../../utils/constants';
 import Footer from '../Footer/Footer';
 
-function Login({ onLog }) {
+function Login({ onLog, authStatus }) {
     const [values, setValues] = React.useState({});
     const [errors, setErrors] = React.useState({});
     const [isValid, setIsValid] = React.useState(false);
     const [resError, setresError] = React.useState('');
-    const history = useHistory();
 
     const handleChange = (event) => {
         const target = event.target;
@@ -42,16 +41,15 @@ function Login({ onLog }) {
 
     function handleSubmit(e) {
         e.preventDefault();
+
         onLog(getValue(values, 'UserEmail'), getValue(values, 'UserPass'))
-            .then(() => {
-                resetForm();
-                history.push("/movies");
-            })
-            .catch((err) => {
-                setresError(err);
-                console.log(err);
-            });
     };
+
+    useEffect(() => {
+        if (authStatus !== {})
+            authStatus.status ? resetForm()
+                : setresError(`Что то пошло не так.. ${authStatus.err}`);
+    }, [authStatus])
 
     const getValue = useCallback((obj, nameProp) => {
         let { [nameProp]: email = '' } = obj;

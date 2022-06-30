@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../../images/header__logo.svg';
 import { RegexEmail } from '../../utils/constants';
 import Footer from '../Footer/Footer';
@@ -10,7 +10,6 @@ function Register({ onReg, onLog }) {
     const [errors, setErrors] = React.useState({});
     const [isValid, setIsValid] = React.useState(false);
     const [resError, setresError] = React.useState('');
-    const history = useHistory();
 
     const handleChange = (event) => {
         const target = event.target;
@@ -41,7 +40,6 @@ function Register({ onReg, onLog }) {
             .then(() => {
                 onLog(getValue(values, 'UserEmail'), getValue(values, 'UserPass'));
                 resetForm();
-                history.push("/movies");
             })
             .catch((err) => {
                 setresError(`Произошла ошибка ${err}, поробуйте еще раз`);
@@ -58,8 +56,7 @@ function Register({ onReg, onLog }) {
     const getValue = useCallback((obj, nameProp) => {
         let { [nameProp]: email = '' } = obj;
         return email;
-    }
-    );
+    });
 
     return (
         <>

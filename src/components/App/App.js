@@ -21,6 +21,7 @@ import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
+  const [authStatus, setAuthStatus] = useState({});
   const [api, setApi] = useState(null);
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
   const [MoviesArray, setMoviesArray] = useState([]);
@@ -119,10 +120,13 @@ function App() {
           localStorage.setItem("jwt", res.token);
           setApi(createApi(res.token));
           setLoggedIn(true);
+          history.push("/movies");
+          setAuthStatus({ status: true, res: res });
         }
       })
       .catch((err) => {
         console.log(err);
+        setAuthStatus({ status: false, err: err });
       });
   };
 
@@ -145,7 +149,7 @@ function App() {
     localStorage.clear();
     setLoggedIn(false);
     setApi(null);
-    history.push("/signin");
+    history.push("/");
   };
 
 
@@ -189,7 +193,7 @@ function App() {
                 deleteMovies={deleteMovies} isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
 
               <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
-                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} savedMoviesArray={savedMoviesArray}/>
+                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} savedMoviesArray={savedMoviesArray} />
 
               <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
                 updateUser={handleUpdateUser} setCurrentUser={setCurrentUser} currentUser={currentUser} />
@@ -199,7 +203,7 @@ function App() {
               </Route>
 
               <Route path="/signin">
-                <Login onLog={onLog} />
+                <Login onLog={onLog} authStatus={authStatus} />
               </Route>
 
               <Route path="*">

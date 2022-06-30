@@ -21,7 +21,7 @@ import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
-  const [authStatus, setAuthStatus] = useState({});
+  const [authStatus, setAuthStatus] = useState();
   const [api, setApi] = useState(null);
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
   const [MoviesArray, setMoviesArray] = useState([]);

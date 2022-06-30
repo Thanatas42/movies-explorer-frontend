@@ -46,7 +46,7 @@ function Login({ onLog, authStatus }) {
     };
 
     useEffect(() => {
-        if (authStatus !== {})
+        if (authStatus)
             authStatus.status ? resetForm()
                 : setresError(`Что то пошло не так.. ${authStatus.err}`);
     }, [authStatus])

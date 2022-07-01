@@ -10,7 +10,7 @@ function Navigation(props) {
                     <Link className="link popup__link" to="/movies" target="_self" onClick={props.onClose}>Фильмы</Link>
                     <Link className="link popup__link" to="/saved-movies" target="_self" onClick={props.onClose}>Сохранённые фильмы</Link>
                 </div>
-                <Link className="link popup__account" to="/profile" target="_self" onClick={props.onClose}>Аккаунт</Link>
+                <Link className="link popup__account" to="/profile" target="_self" onClick={props.onClose} >Аккаунт</Link>
             </div>
         </div>
     )

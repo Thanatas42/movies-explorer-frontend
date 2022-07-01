@@ -1,7 +1,7 @@
 import React from "react";
 
-function SearchForm(props) {
-    const [searchInput, setSearchInput] = React.useState(localStorage.getItem('searchInput') ? localStorage.getItem('searchInput') : '');
+function SavedSearchForm(props) {
+    const [searchInput, setSearchInput] = React.useState('');
 
     function handleChangeSearchInput(e) {
         setSearchInput(e.target.value);
@@ -9,15 +9,12 @@ function SearchForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (!searchInput) {
+        console.log(searchInput);
+        if (searchInput === '') {
             props.setInSearch(false);
-            props.setInSearchString('');
-            localStorage.removeItem('searchInput');
         } else {
             props.setInSearch(true);
             props.setInSearchString(searchInput);
-            localStorage.removeItem('searchInput');
-            localStorage.setItem('searchInput', searchInput);
         }
     }
 
@@ -46,4 +43,4 @@ function SearchForm(props) {
     )
 }
 
-export default React.memo(SearchForm)
+export default React.memo(SavedSearchForm)

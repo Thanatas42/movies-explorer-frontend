@@ -1,8 +1,9 @@
-import MoviesCard from '../MoviesCard/MoviesCard';
+import SavedMoviesCard from '../MoviesCard/SavedMoviesCard';
 
-function MoviesCardList(props) {
+function SavedMoviesCardList(props) {
+
     function handleShowMorePosts() {
-        const slicedMovies = props.moviesInMemory.slice(props.moviesToShow.length, props.moviesToShow.length + props.moreCountCards);
+        const slicedMovies = props.savedMoviesArray.slice(props.moviesToShow.length, props.moviesToShow.length + props.moreCountCards);
         props.setMoviesToShow([...props.moviesToShow, ...slicedMovies]);
     };
 
@@ -10,7 +11,7 @@ function MoviesCardList(props) {
         <>
             <ul className="cards" id="cards">
                 {props.moviesToShow.map((item) => {
-                    return <MoviesCard movies={item} key={item.id} likedMovies={props.likedMovies}
+                    return <SavedMoviesCard movies={item} key={item.movieId} likedMovies={props.likedMovies}
                         deleteMovies={props.deleteMovies} isLiked={item.isLiked} />
                 })}
             </ul>
@@ -20,4 +21,4 @@ function MoviesCardList(props) {
     )
 }
 
-export default MoviesCardList;
+export default SavedMoviesCardList;

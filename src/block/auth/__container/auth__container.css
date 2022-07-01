@@ -15,6 +15,6 @@
 
 @media screen and (min-width: 1280px) {
     .auth__container {
-        min-height: calc(100vh - 240px);
+        min-height: calc(100vh - 340px);
     }
 }

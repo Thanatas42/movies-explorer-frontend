@@ -17,7 +17,6 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import createApi from "../../utils/MainApi";
 import * as Auth from '../../utils/Auth';
 import * as MoviesApi from '../../utils/MoviesApi';
-import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);

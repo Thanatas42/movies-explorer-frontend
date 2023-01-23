@@ -13,7 +13,7 @@ function Register({ onReg, onLog }) {
 
         onReg(values.UserName, values.UserEmail, values.UserPass)
             .then(() => {
-                onLog(values.UserName, values.UserEmail, values.UserPass);
+                onLog(values.UserEmail, values.UserPass);
                 resetForm();
             })
             .catch((err) => {
@@ -30,18 +30,18 @@ function Register({ onReg, onLog }) {
                     <h1 className="auth__title">Добро пожаловать!</h1>
 
                     <p className="auth__text">Имя</p>
-                    <input id='UserName' name='UserName' className="auth__input" type="text" minLength="2" maxLength="30"
-                        required value={values.UserName} onChange={handleChange} autoComplete="username" />
+                    <input name='UserName' className="auth__input" minLength="2" maxLength="30"
+                        required value={values.UserName || ''} onChange={handleChange} autoComplete="name" />
                     <label className="auth__error" htmlFor="UserName">{errors.UserName}</label>
 
                     <p className="auth__text">E-mail</p>
-                    <input id='UserEmail' name='UserEmail' className="auth__input" type="email" minLength="2" maxLength="40"
-                        required value={values.UserEmail} onChange={handleChange} autoComplete="userEmail" />
+                    <input name='UserEmail' className="auth__input" type="email" minLength="2" maxLength="40"
+                        required value={values.UserEmail || ''} onChange={handleChange} autoComplete="email" />
                     <label className="auth__error" htmlFor="UserEmail">{errors.UserEmail}</label>
 
                     <p className="auth__text">Пароль</p>
-                    <input id='UserPass' name='UserPass' className="auth__input" type="password" minLength="8" maxLength="30"
-                        suggested="current-password" required value={values.UserPass} onChange={handleChange} autoComplete="current-password" />
+                    <input name='UserPass' className="auth__input" type="password" minLength="8" maxLength="30"
+                        required value={values.UserPass || ''} onChange={handleChange} autoComplete="new-password" />
                     <label className="auth__error" htmlFor="UserPass">{errors.UserPass}</label>
                 </fieldset>
 

@@ -1,60 +1,23 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import logo from '../../images/header__logo.svg';
-import { RegexEmail } from '../../utils/constants';
+import { useFormWithValidation } from '../../utils/useFormWithValidation';
 import Footer from '../Footer/Footer';
 
 function Login({ onLog, authStatus }) {
-    const [values, setValues] = React.useState({});
-    const [errors, setErrors] = React.useState({});
-    const [isValid, setIsValid] = React.useState(false);
-    const [resError, setresError] = React.useState('');
-
-    const handleChange = (event) => {
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
-        setValues({ ...values, [name]: value });
-
-        if (target.name === 'UserEmail') {
-            const regex = RegexEmail;
-            if (!regex.test(target.value)) {
-                target.style = "color: #EE3465";
-                setIsValid(regex.test(target.value));
-                setErrors({ ...errors, [name]: "Email должен соответствовать схеме NN@NN.com" })
-            } else {
-                target.style = "color: #FFF";
-                setIsValid(regex.test(target.value));
-                setErrors({ ...errors, [name]: "" })
-            }
-        } else {
-            setErrors({ ...errors, [name]: target.validationMessage });
-            setIsValid(target.closest("form").checkValidity());
-        }
-    };
-
-    function resetForm() {
-        setValues({});
-        setErrors({});
-        setIsValid(false);
-    };
+    const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+    const [resError, setresError] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        onLog(getValue(values, 'UserEmail'), getValue(values, 'UserPass'))
+        onLog(values.UserEmail, values.UserPass);
     };
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (authStatus)
             authStatus.status ? resetForm()
                 : setresError(`Что то пошло не так.. ${authStatus.err}`);
-    }, [authStatus])
-
-    const getValue = useCallback((obj, nameProp) => {
-        let { [nameProp]: email = '' } = obj;
-        return email;
-    });
+    }, [authStatus])*/
 
     return (
         <>
@@ -62,17 +25,16 @@ function Login({ onLog, authStatus }) {
                 <fieldset className="auth__container">
                     <Link to="/" target="_self"><img src={logo} alt="Проект Movies Explorer" /></Link>
                     <h1 className="auth__title">Рады видеть!</h1>
-                    <p className="auth__text">Email</p>
-                    <input id='UserEmail' name='UserEmail' className="auth__input" type="email"
-                        minLength="2" maxLength="40"
-                        required value={getValue(values, 'UserEmail')} onChange={handleChange} />
+                    <p className="auth__text">E-mail</p>
+                    <input name='UserEmail' className="auth__input" type="email" minLength="2" maxLength="40"
+                        required value={values.UserEmail || ''} onChange={handleChange} autoComplete="email" />
                     <label className="auth__error" htmlFor="UserEmail">{errors.UserEmail}</label>
 
                     <p className="auth__text">Пароль</p>
-                    <input id='UserPass' name='UserPass' className="auth__input" type="password"
-                        minLength="8" maxLength="40" suggested="current-password"
-                        required value={getValue(values, 'UserPass')} onChange={handleChange} />
+                    <input name='UserPass' className="auth__input" type="password" minLength="8" maxLength="30"
+                        required value={values.UserPass || ''} onChange={handleChange} autoComplete="current-password" />
                     <label className="auth__error" htmlFor="UserPass">{errors.UserPass}</label>
+
                 </fieldset>
                 <label className="auth__error" htmlFor="RegSubmit">{resError}</label>
                 <button className={isValid ? 'button auth__submit' :

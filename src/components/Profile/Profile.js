@@ -1,71 +1,63 @@
+import { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useFormWithValidation } from '../../utils/useFormWithValidation';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Footer from '../Footer/Footer';
 
 function Profile(props) {
-    const currentUser = props.currentUser;
-    const [values, setValues] = useState({ UserName: props.currentUser.userName, UserEmail: props.currentUser.userEmail });
-    const [errors, setErrors] = useState({});
-    const [isValid, setIsValid] = useState(false);
-    const [resUpdate, setResUpdate] = useState({ status: true, message: '' });
-
-    const handleChange = (event) => {
-        const target = event.target;
-        const name = target.name;
-        const value = target.value;
-        setValues({ ...values, [name]: value });
-        setErrors({ ...errors, [name]: target.validationMessage });
-        setIsValid(target.closest("form").checkValidity());
-    };
-
-    useEffect(() => {
-        setValues({ UserName: props.currentUser.userName, UserEmail: props.currentUser.userEmail });
-    }, [currentUser])
+    const user = useContext(CurrentUserContext);
+    const { values, handleChange, errors, isValid } = useFormWithValidation();
+    const [resUpdateStatus, setResUpdateStatus] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
-        props.updateUser(values.UserName, values.UserEmail)
+
+        if (!values.UserName) {
+            values.UserName = user.userName;
+        }
+        if (!values.UserEmail) {
+            values.UserEmail = user.userEmail;
+        }
+
+        props.handleUpdateUser(values.UserName, values.UserEmail)
             .then(() => {
                 props.setCurrentUser({
                     userName: values.UserName,
                     userEmail: values.UserEmail,
-                    userId: currentUser._id
+                    userId: user._id
                 });
-                setResUpdate({ status: true, message: 'Профиль успешно отредактирован' });
+                setResUpdateStatus(true);
             })
             .catch((err) => {
                 console.log(err);
-                setResUpdate({ status: false, message: 'Произошла ошибка при редактировании профиля' });
             });
     };
 
     function getValidInSubmit() {
-        if (currentUser.userName === values.UserName
-            && currentUser.userEmail === values.UserEmail) {
-            return false;
-        }
-        return isValid;
+        return user.userName === values.UserName
+            && user.userEmail === values.UserEmail ? false : isValid;
     }
 
     return (
         <>
             <form className="auth auth_profile" onSubmit={handleSubmit}>
                 <fieldset className="auth__container auth__container_profile">
-                    <h1 className="auth__title auth__title_profile">Привет, {currentUser.userName}!</h1>
+                    <h1 className="auth__title auth__title_profile">Привет, {user.userName}!</h1>
                     <div className="auth__group">
                         <p className="auth__text auth__text_profile">Имя</p>
-                        <input id='UserName' name='UserName' className="auth__input auth__input_profile" type="text"
-                            minLength="2" maxLength="40" value={values.UserName} onChange={handleChange}
-                            required />
+                        <input name='UserName' className="auth__input auth__input_profile" minLength="2"
+                            maxLength="40" value={values.UserName || user.userName} onChange={handleChange} required />
                     </div>
+                    <label className="auth__error" htmlFor="UserName">{errors.UserName}</label>
                     <div className="auth__group">
                         <p className="auth__text auth__text_profile">Email</p>
-                        <input id='UserEmail' name='UserEmail' className="auth__input auth__input_profile"
-                            type="email" minLength="2" maxLength="40" value={values.UserEmail} onChange={handleChange}
-                            required />
+                        <input name='UserEmail' className="auth__input auth__input_profile" type="email" minLength="2"
+                            maxLength="40" value={values.UserEmail || user.userEmail} onChange={handleChange} required />
                     </div>
-                    <p className={resUpdate.status ? 'auth__text auth__text_update'
-                        : 'auth__text auth__text_update auth__link_theme-red'}>{resUpdate.message}</p>
+                    <label className="auth__error" htmlFor="UserEmail">{errors.UserEmail}</label>
+                    <p className={resUpdateStatus ? 'auth__text auth__text_update'
+                        : 'auth__text auth__text_update auth__link_theme-red'}>{resUpdateStatus ? 'Профиль успешно отредактирован'
+                            : 'Произошла ошибка при редактировании профиля'}</p>
                 </fieldset>
                 <button className={getValidInSubmit() ? "link auth__link auth__link_profile" :
                     'link auth__link auth__link_profile auth__submit_theme_disabled'} type="submit" disabled={!getValidInSubmit()}>Редактировать</button>

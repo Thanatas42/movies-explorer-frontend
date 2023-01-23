@@ -1,4 +1,5 @@
-export const BASE_URL = "https://api.movies-dmitry.nomoredomains.rocks";
+import { AuthApiPAth } from '../utils/constants';
+const BASE_URL = AuthApiPAth;
 
 const resStatus = (res) => {
     if (!res.ok) {

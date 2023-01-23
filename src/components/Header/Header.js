@@ -8,18 +8,9 @@ import { HeaderPathLists } from "../../utils/constants";
 function Header(props) {
     const location = useLocation();
 
-    function contains(arr, item) {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i] === item) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     return (
         <>
-            {contains(HeaderPathLists, location.pathname) ?
+            {HeaderPathLists.includes(location.pathname) ?
                 <header className="header">
                     <div className='header__container'>
                         <Link className="header__logo" to="/" target="_self"><img src={logo} alt="Проект Movies Explorer" /></Link>

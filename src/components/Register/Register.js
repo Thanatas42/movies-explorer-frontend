@@ -11,7 +11,7 @@ function Register({ onReg, onLog }) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        onReg(values.UserName, values.UserEmail, values.UserPass)
+        onReg(values.UserEmail, values.UserPass, values.UserName)
             .then(() => {
                 onLog(values.UserEmail, values.UserPass);
                 resetForm();

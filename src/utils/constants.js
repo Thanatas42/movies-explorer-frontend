@@ -1,5 +1,8 @@
 const HeaderPathLists = ["/", "/movies", "/saved-movies", "/profile"];
+
+// "https://api.movies-dmitry.nomoredomains.rocks"
 const MoviesApiPath = "https://api.nomoreparties.co";
+export const AuthApiPAth = "http://localhost:3000";
 
 //Projects
 export const HowToLearn = 'https://thanatas42.github.io/how-to-learn';

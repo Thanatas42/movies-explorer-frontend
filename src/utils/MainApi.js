@@ -1,4 +1,5 @@
 import { MoviesApiPath } from './constants';
+import { AuthApiPAth } from '../utils/constants';
 
 const handleResponse = (res) => {
     if (!res.ok) {
@@ -81,7 +82,7 @@ class Api {
 
 
 const createApi = (token) => new Api({
-    baseUrl: "https://api.movies-dmitry.nomoredomains.rocks",
+    baseUrl: AuthApiPAth,
     headers: {
         authorization: `Bearer ${token}`,
         "Content-Type": "application/json",

@@ -20,7 +20,6 @@ import * as MoviesApi from '../../utils/MoviesApi';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
-  const [authStatus, setAuthStatus] = useState();
   const [api, setApi] = useState(null);
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
   const [MoviesArray, setMoviesArray] = useState([]);
@@ -65,7 +64,7 @@ function App() {
       });
   };
 
-  function handleUpdateUser(name, email) {
+  const handleUpdateUser = (name, email) => {
     return api.updateUser(name, email);
   };
 
@@ -104,29 +103,19 @@ function App() {
 
   const onReg = (emailInput, passwordInput, nameInput) => {
     return Auth.register(emailInput, passwordInput, nameInput)
-      .then((res) => {
-        if (!res) throw new Error("Что-то пошло не так");
-        return res;
-      });
+      .then((res) => { return res; });
   };
 
   const onLog = (emailInput, passwordInput) => {
     return Auth.authorize(emailInput, passwordInput)
       .then((res) => {
-        if (!res || !res.token)
-          throw new Error("Неправильные имя пользователя или пароль");
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setApi(createApi(res.token));
           setLoggedIn(true);
           history.push("/movies");
-          setAuthStatus({ status: true, res: res });
         }
       })
-      .catch((err) => {
-        console.log(err);
-        setAuthStatus({ status: false, err: err });
-      });
   };
 
   const deleteMovies = (movieId) => {
@@ -194,15 +183,15 @@ function App() {
               <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
                 isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} savedMoviesArray={savedMoviesArray} />
 
-              <ProtectedRoute path="/profile" component={Profile} loggedIn={loggedIn} onSignOut={onSignOut}
-                updateUser={handleUpdateUser} setCurrentUser={setCurrentUser} currentUser={currentUser} />
+              <ProtectedRoute path="/profile" component={Profile} onSignOut={onSignOut}
+                handleUpdateUser={handleUpdateUser} setCurrentUser={setCurrentUser} />
 
               <Route path="/signup">
                 <Register onReg={onReg} onLog={onLog} />
               </Route>
 
               <Route path="/signin">
-                <Login onLog={onLog} authStatus={authStatus} />
+                <Login onLog={onLog} />
               </Route>
 
               <Route path="*">

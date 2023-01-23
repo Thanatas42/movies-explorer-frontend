@@ -4,20 +4,18 @@ import logo from '../../images/header__logo.svg';
 import { useFormWithValidation } from '../../utils/useFormWithValidation';
 import Footer from '../Footer/Footer';
 
-function Login({ onLog, authStatus }) {
+function Login(props) {
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const [resError, setresError] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault();
-        onLog(values.UserEmail, values.UserPass);
+        props.onLog(values.UserEmail, values.UserPass)
+            .then((res) => { resetForm(); })
+            .catch((err) => {
+                setresError(setresError(`Произошла ошибка ${err}, поробуйте еще раз`));
+            });
     };
-
-    /*useEffect(() => {
-        if (authStatus)
-            authStatus.status ? resetForm()
-                : setresError(`Что то пошло не так.. ${authStatus.err}`);
-    }, [authStatus])*/
 
     return (
         <>

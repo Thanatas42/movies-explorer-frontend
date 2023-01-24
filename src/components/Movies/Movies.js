@@ -3,7 +3,7 @@ import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import { useContext, useState, useEffect } from "react";
 import { MoviesArrayContex } from '../../context/MoviesArrayContex';
-import resizeEvent from '../../utils/resizeEvent';
+import resizeEvent from '../../utils/ResizeEvent';
 import Footer from '../Footer/Footer';
 import { DurationShortFilms } from '../../utils/constants';
 import Preloader from '../../components/Preloader/Preloader';

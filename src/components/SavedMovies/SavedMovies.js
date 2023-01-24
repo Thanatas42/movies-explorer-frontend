@@ -3,7 +3,7 @@ import SavedSearchForm from '../Movies/SavedSearchForm/SavedSearchForm';
 import SavedMoviesCardList from '../Movies/SavedMoviesCardList/SavedMoviesCardList';
 import { useContext, useState, useEffect } from "react";
 import { SavedMoviesArrayContex } from '../../context/SavedMoviesArrayContex';
-import resizeEvent from '../../utils/resizeEvent';
+import resizeEvent from '../../utils/ResizeEvent';
 import Footer from '../Footer/Footer';
 import { DurationShortFilms } from '../../utils/constants';
 import Preloader from '../../components/Preloader/Preloader';

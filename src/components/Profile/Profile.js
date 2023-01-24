@@ -7,17 +7,12 @@ import Footer from '../Footer/Footer';
 function Profile(props) {
     const user = useContext(CurrentUserContext);
     const { values, handleChange, errors, isValid } = useFormWithValidation();
-    const [resUpdateStatus, setResUpdateStatus] = useState(false);
+    const [responsible, setResponsible] = useState({ resStatus: false, resMessage: '' });
 
     function handleSubmit(e) {
         e.preventDefault();
 
-        if (!values.UserName) {
-            values.UserName = user.userName;
-        }
-        if (!values.UserEmail) {
-            values.UserEmail = user.userEmail;
-        }
+        fillingEmptyValues(values, user);
 
         props.handleUpdateUser(values.UserName, values.UserEmail)
             .then(() => {
@@ -26,14 +21,26 @@ function Profile(props) {
                     userEmail: values.UserEmail,
                     userId: user._id
                 });
-                setResUpdateStatus(true);
+                setResponsible({ resStatus: true, resMessage: 'Профиль успешно отредактирован' });
             })
             .catch((err) => {
                 console.log(err);
+                setResponsible({ resStatus: false, resMessage: 'Произошла ошибка при редактировании профиля' });
             });
     };
 
-    function getValidInSubmit() {
+    function fillingEmptyValues(values, user) {
+        if (!values.UserName || !values.UserEmail) {
+            if (!values.UserName) {
+                values.UserName = user.userName;
+            }
+            if (!values.UserEmail) {
+                values.UserEmail = user.userEmail;
+            }
+        }
+    }
+
+    function isValueNotCurrent(values, user, isValid) {
         return user.userName === values.UserName
             && user.userEmail === values.UserEmail ? false : isValid;
     }
@@ -55,12 +62,11 @@ function Profile(props) {
                             maxLength="40" value={values.UserEmail || user.userEmail} onChange={handleChange} required />
                     </div>
                     <label className="auth__error" htmlFor="UserEmail">{errors.UserEmail}</label>
-                    <p className={resUpdateStatus ? 'auth__text auth__text_update'
-                        : 'auth__text auth__text_update auth__link_theme-red'}>{resUpdateStatus ? 'Профиль успешно отредактирован'
-                            : 'Произошла ошибка при редактировании профиля'}</p>
+                    <p className={responsible.resStatus ? 'auth__text auth__text_update'
+                        : 'auth__text auth__text_update auth__link_theme-red'}>{responsible.resMessage}</p>
                 </fieldset>
-                <button className={getValidInSubmit() ? "link auth__link auth__link_profile" :
-                    'link auth__link auth__link_profile auth__submit_theme_disabled'} type="submit" disabled={!getValidInSubmit()}>Редактировать</button>
+                <button className={isValueNotCurrent(values, user, isValid) ? "link auth__link auth__link_profile" :
+                    'link auth__link auth__link_profile auth__submit_theme_disabled'} type="submit" disabled={!isValueNotCurrent(values, user, isValid)}>Редактировать</button>
                 <Link className="link auth__link auth__link_theme-red" to="#" onClick={props.onSignOut}>Выйти из аккаунта</Link>
             </form>
             <Footer />
@@ -68,4 +74,4 @@ function Profile(props) {
     )
 }
 
-export default Profile
+export default Profile;

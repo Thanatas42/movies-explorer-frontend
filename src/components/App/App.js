@@ -39,6 +39,7 @@ function App() {
   }
 
   const jwt = localStorage.getItem("jwt");
+  
   useEffect(() => {
     if (jwt) {
       auth(localStorage.getItem("jwt"));

@@ -20,7 +20,7 @@ function Portfolio() {
                     </a>
                 </li>
                 <li className="portfolio__item">
-                    <a href={Mesto} className="portfolio__link">
+                    <a href={Mesto} className="portfolio__link"  target="_blank" rel="noreferrer">
                         Одностраничное приложение<img className="portfolio__image" src={link} alt="ссылка" />
                     </a>
                 </li>

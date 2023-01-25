@@ -14,6 +14,7 @@ import Header from '../Header/Header';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import MoviesBlock from "../MoviesBlock/MoviesBlock";
 import createApi from "../../utils/MainApi";
 import * as Auth from '../../utils/Auth';
 import * as MoviesApi from '../../utils/MoviesApi';
@@ -39,9 +40,10 @@ function App() {
   }
 
   const jwt = localStorage.getItem("jwt");
-  
+
   useEffect(() => {
     if (jwt) {
+      setLoggedIn(true);
       auth(localStorage.getItem("jwt"));
     } else
       setLoggedIn(false);
@@ -51,19 +53,44 @@ function App() {
     Auth.getContent(jwt)
       .then((res) => {
         if (res) {
-          setLoggedIn(true);
+          setApi(createApi(jwt));
           setCurrentUser({
             userName: res.data.name,
             userEmail: res.data.email,
             userId: res.data._id
           });
-          setApi(createApi(jwt));
         }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    if (!api) {
+      console.log("api is null");
+      return;
+    }
+    console.log("api is not null");
+
+    setResStatus(true);
+    Promise.all([api.getMovies(), MoviesApi.getMoviesCard()])
+      .then(([initialSavedMovies, initialMovies]) => {
+        setSavedMoviesArray(initialSavedMovies);
+        let resultArray = initialMovies.map((item) => {
+          let found = initialSavedMovies.find(c => c.movieId === item.id)
+          found ? item.isLiked = true : item.isLiked = false;
+
+          return item;
+        });
+        setMoviesArray(resultArray);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      
+  }, [api]);
+
 
   const handleUpdateUser = (name, email) => {
     return api.updateUser(name, email);
@@ -142,31 +169,6 @@ function App() {
   };
 
 
-  useEffect(() => {
-    if (!api) {
-      console.log("api is null");
-      return;
-    }
-    console.log("api is not null");
-
-    setResStatus(true);
-    Promise.all([api.getMovies(), MoviesApi.getMoviesCard()])
-      .then(([initialSavedMovies, initialMovies]) => {
-        setSavedMoviesArray(initialSavedMovies);
-        let resultArray = initialMovies.map((item) => {
-          let found = initialSavedMovies.find(c => c.movieId === item.id)
-          found ? item.isLiked = true : item.isLiked = false;
-
-          return item;
-        });
-        setMoviesArray(resultArray);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [api]);
-
-
   return (
     <>
       <MoviesArrayContex.Provider value={MoviesArray}>
@@ -178,14 +180,14 @@ function App() {
                 <Main />
               </Route>
 
-              <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} setResStatus={setResStatus} likedMovies={likedMovies}
+              <ProtectedRoute path={"/movies"} component={MoviesBlock} loggedIn={loggedIn} resStatus={resStatus} setResStatus={setResStatus} likedMovies={likedMovies}
                 deleteMovies={deleteMovies} isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
 
               <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
                 isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} savedMoviesArray={savedMoviesArray} />
 
               <ProtectedRoute path="/profile" component={Profile} onSignOut={onSignOut}
-                handleUpdateUser={handleUpdateUser} setCurrentUser={setCurrentUser} />
+                handleUpdateUser={handleUpdateUser} setCurrentUser={setCurrentUser} loggedIn={loggedIn} />
 
               <Route path="/signup">
                 <Register onReg={onReg} onLog={onLog} />

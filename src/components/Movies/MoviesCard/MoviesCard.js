@@ -18,7 +18,8 @@ function MoviesCard(props) {
     return (
         <>
             <li className="card">
-                <a href={props.movies.trailerLink} target="_blank" rel="noreferrer"><img className="card__image" src={MoviesApiPath + props.movies.image.url} alt="Аватар" /></a>
+                <a href={props.movies.trailerLink} target="_blank" rel="noreferrer"><img className="card__image"
+                    src={MoviesApiPath + props.movies.image.url} alt="Обложка фильма" /></a>
                 <div className="card__container">
                     <h3 className="card__title">{props.movies.nameRU}</h3>
                     <button className={isLiked ? "card__like card__like_them_active" : "card__like"} type="checkbox" onClick={handleLiked} />

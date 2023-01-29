@@ -5,7 +5,7 @@ import Main from '../Main/Main';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import { MoviesArrayContex } from '../../context/MoviesArrayContex';
+import { ApiContex } from '../../context/ApiContex';
 import { SavedMoviesArrayContex } from '../../context/SavedMoviesArrayContex';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Movies from '../Movies/Movies';
@@ -14,6 +14,7 @@ import Header from '../Header/Header';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import MoviesBlock from "../MoviesBlock/MoviesBlock";
 import createApi from "../../utils/MainApi";
 import * as Auth from '../../utils/Auth';
 import * as MoviesApi from '../../utils/MoviesApi';
@@ -39,8 +40,10 @@ function App() {
   }
 
   const jwt = localStorage.getItem("jwt");
+
   useEffect(() => {
     if (jwt) {
+      setLoggedIn(true);
       auth(localStorage.getItem("jwt"));
     } else
       setLoggedIn(false);
@@ -50,13 +53,12 @@ function App() {
     Auth.getContent(jwt)
       .then((res) => {
         if (res) {
-          setLoggedIn(true);
+          setApi(createApi(jwt));
           setCurrentUser({
             userName: res.data.name,
             userEmail: res.data.email,
             userId: res.data._id
           });
-          setApi(createApi(jwt));
         }
       })
       .catch((err) => {
@@ -66,39 +68,6 @@ function App() {
 
   const handleUpdateUser = (name, email) => {
     return api.updateUser(name, email);
-  };
-
-  function likedMovies({ country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink,
-    id,
-    nameRU,
-    nameEN }) {
-    api.createMovies({
-      country,
-      director,
-      duration,
-      year,
-      description,
-      image,
-      trailerLink,
-      thumbnail: image.formats.thumbnail,
-      movieId: id,
-      nameRU,
-      nameEN
-    })
-      .then((res) => {
-        MoviesArray.find(c => c.id === id).isLiked = true;
-        setSavedMoviesArray([res, ...savedMoviesArray]);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const onReg = (emailInput, passwordInput, nameInput) => {
@@ -118,18 +87,6 @@ function App() {
       })
   };
 
-  const deleteMovies = (movieId) => {
-    api.deleteMovies(movieId)
-      .then((res) => {
-        MoviesArray.find(c => c.id === movieId).isLiked = false;
-        setSavedMoviesArray((savedMoviesArray) => savedMoviesArray.filter((c) => c.movieId !== movieId));
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const onSignOut = () => {
     localStorage.removeItem("jwt");
     localStorage.removeItem('searchInput');
@@ -141,34 +98,9 @@ function App() {
   };
 
 
-  useEffect(() => {
-    if (!api) {
-      console.log("api is null");
-      return;
-    }
-    console.log("api is not null");
-
-    setResStatus(true);
-    Promise.all([api.getMovies(), MoviesApi.getMoviesCard()])
-      .then(([initialSavedMovies, initialMovies]) => {
-        setSavedMoviesArray(initialSavedMovies);
-        let resultArray = initialMovies.map((item) => {
-          let found = initialSavedMovies.find(c => c.movieId === item.id)
-          found ? item.isLiked = true : item.isLiked = false;
-
-          return item;
-        });
-        setMoviesArray(resultArray);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [api]);
-
-
   return (
     <>
-      <MoviesArrayContex.Provider value={MoviesArray}>
+      <ApiContex.Provider value={api}>
         <SavedMoviesArrayContex.Provider value={savedMoviesArray}>
           <CurrentUserContext.Provider value={currentUser}>
             <Header LogOn={loggedIn} onOpen={handleNavigationClick} />
@@ -177,14 +109,13 @@ function App() {
                 <Main />
               </Route>
 
-              <ProtectedRoute path="/movies" component={Movies} loggedIn={loggedIn} resStatus={resStatus} setResStatus={setResStatus} likedMovies={likedMovies}
-                deleteMovies={deleteMovies} isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
+              <ProtectedRoute path={"/movies"} component={MoviesBlock} loggedIn={loggedIn} />
 
-              <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
+              <ProtectedRoute path="/saved-movies" component={MoviesBlock} loggedIn={loggedIn} resStatus={resStatus}
                 isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} savedMoviesArray={savedMoviesArray} />
 
               <ProtectedRoute path="/profile" component={Profile} onSignOut={onSignOut}
-                handleUpdateUser={handleUpdateUser} setCurrentUser={setCurrentUser} />
+                handleUpdateUser={handleUpdateUser} setCurrentUser={setCurrentUser} loggedIn={loggedIn} />
 
               <Route path="/signup">
                 <Register onReg={onReg} onLog={onLog} />
@@ -210,7 +141,7 @@ function App() {
             <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
           </CurrentUserContext.Provider>
         </SavedMoviesArrayContex.Provider>
-      </MoviesArrayContex.Provider>
+      </ApiContex.Provider>
     </>
   );
 }

@@ -5,7 +5,7 @@ import Main from '../Main/Main';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import { MoviesArrayContex } from '../../context/MoviesArrayContex';
+import { ApiContex } from '../../context/ApiContex';
 import { SavedMoviesArrayContex } from '../../context/SavedMoviesArrayContex';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Movies from '../Movies/Movies';
@@ -66,67 +66,8 @@ function App() {
       });
   };
 
-  useEffect(() => {
-    if (!api) {
-      console.log("api is null");
-      return;
-    }
-    console.log("api is not null");
-
-    setResStatus(true);
-    Promise.all([api.getMovies(), MoviesApi.getMoviesCard()])
-      .then(([initialSavedMovies, initialMovies]) => {
-        setSavedMoviesArray(initialSavedMovies);
-        let resultArray = initialMovies.map((item) => {
-          let found = initialSavedMovies.find(c => c.movieId === item.id)
-          found ? item.isLiked = true : item.isLiked = false;
-
-          return item;
-        });
-        setMoviesArray(resultArray);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      
-  }, [api]);
-
-
   const handleUpdateUser = (name, email) => {
     return api.updateUser(name, email);
-  };
-
-  function likedMovies({ country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink,
-    id,
-    nameRU,
-    nameEN }) {
-    api.createMovies({
-      country,
-      director,
-      duration,
-      year,
-      description,
-      image,
-      trailerLink,
-      thumbnail: image.formats.thumbnail,
-      movieId: id,
-      nameRU,
-      nameEN
-    })
-      .then((res) => {
-        MoviesArray.find(c => c.id === id).isLiked = true;
-        setSavedMoviesArray([res, ...savedMoviesArray]);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const onReg = (emailInput, passwordInput, nameInput) => {
@@ -146,18 +87,6 @@ function App() {
       })
   };
 
-  const deleteMovies = (movieId) => {
-    api.deleteMovies(movieId)
-      .then((res) => {
-        MoviesArray.find(c => c.id === movieId).isLiked = false;
-        setSavedMoviesArray((savedMoviesArray) => savedMoviesArray.filter((c) => c.movieId !== movieId));
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const onSignOut = () => {
     localStorage.removeItem("jwt");
     localStorage.removeItem('searchInput');
@@ -171,7 +100,7 @@ function App() {
 
   return (
     <>
-      <MoviesArrayContex.Provider value={MoviesArray}>
+      <ApiContex.Provider value={api}>
         <SavedMoviesArrayContex.Provider value={savedMoviesArray}>
           <CurrentUserContext.Provider value={currentUser}>
             <Header LogOn={loggedIn} onOpen={handleNavigationClick} />
@@ -180,10 +109,9 @@ function App() {
                 <Main />
               </Route>
 
-              <ProtectedRoute path={"/movies"} component={MoviesBlock} loggedIn={loggedIn} resStatus={resStatus} setResStatus={setResStatus} likedMovies={likedMovies}
-                deleteMovies={deleteMovies} isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
+              <ProtectedRoute path={"/movies"} component={MoviesBlock} loggedIn={loggedIn} />
 
-              <ProtectedRoute path="/saved-movies" component={SavedMovies} loggedIn={loggedIn} deleteMovies={deleteMovies} resStatus={resStatus}
+              <ProtectedRoute path="/saved-movies" component={MoviesBlock} loggedIn={loggedIn} resStatus={resStatus}
                 isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} savedMoviesArray={savedMoviesArray} />
 
               <ProtectedRoute path="/profile" component={Profile} onSignOut={onSignOut}
@@ -213,7 +141,7 @@ function App() {
             <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
           </CurrentUserContext.Provider>
         </SavedMoviesArrayContex.Provider>
-      </MoviesArrayContex.Provider>
+      </ApiContex.Provider>
     </>
   );
 }

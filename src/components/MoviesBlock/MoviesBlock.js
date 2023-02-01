@@ -9,6 +9,7 @@ const MoviesBlock = ({ component: Component, ...props }) => {
     const Api = useContext(ApiContex);
     const [searchInput, setSearchInput] = useState('');
     const [isShortFilms, setIsShortFilms] = useState(false);
+    const [isSearch, setIsSearch] = useState(false);
 
     const [MoviesArray, setMoviesArray] = useState([]);
     const [savedMoviesArray, setSavedMoviesArray] = useState([]);
@@ -86,11 +87,11 @@ const MoviesBlock = ({ component: Component, ...props }) => {
 
     return (
         <>
-            <SearchForm isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} searchInput={searchInput} setSearchInput={setSearchInput} />
+            <SearchForm isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} searchInput={searchInput} setSearchInput={setSearchInput} setIsSearch={setIsSearch} />
             {props.path === '/movies' ? <Movies {...props} moviesArray={MoviesArray} resStatus={requestStatus} likedMovies={likedMovies} deleteMovies={deleteMovies}
-                isShortFilms={isShortFilms} searchInput={searchInput} /> : <></>}
+                isShortFilms={isShortFilms} searchInput={searchInput} isSearch={isSearch} /> : <></>}
             {props.path === '/saved-movies' ? <Movies {...props} moviesArray={savedMoviesArray} resStatus={requestStatus} likedMovies={likedMovies} deleteMovies={deleteMovies}
-                isShortFilms={isShortFilms} searchInput={searchInput} /> : <></>}
+                isShortFilms={isShortFilms} searchInput={searchInput} isSearch={isSearch} /> : <></>}
             <Footer />
         </>
     );

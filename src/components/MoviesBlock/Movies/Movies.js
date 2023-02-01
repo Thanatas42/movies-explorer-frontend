@@ -1,5 +1,5 @@
 import React from 'react';
-import MoviesCardList from './MoviesCardList/MoviesCardList';
+import MoviesCardList from '../MoviesBlock/MoviesCardList/MoviesCardList';
 import Preloader from '../../components/Preloader/Preloader';
 
 function Movies(props) {

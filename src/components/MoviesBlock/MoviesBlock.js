@@ -3,7 +3,7 @@ import * as MoviesApi from '../../utils/MoviesApi'
 import { ApiContex } from '../../context/ApiContex';
 import SearchForm from './SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
-import Movies from "../Movies/Movies";
+import Movies from "./Movies/Movies";
 
 const MoviesBlock = ({ component: Component, ...props }) => {
     const Api = useContext(ApiContex);

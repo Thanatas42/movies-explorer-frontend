@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Route, useLocation } from 'react-router-dom';
 import * as MoviesApi from '../../utils/MoviesApi'
 import { ApiContex } from '../../context/ApiContex';
 import SearchForm from './SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import Movies from "../Movies/Movies";
-import SavedMovies from '../SavedMovies/SavedMovies';
 
 const MoviesBlock = ({ component: Component, ...props }) => {
     const Api = useContext(ApiContex);
@@ -89,8 +87,10 @@ const MoviesBlock = ({ component: Component, ...props }) => {
     return (
         <>
             <SearchForm isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} searchInput={searchInput} setSearchInput={setSearchInput} />
-            {props.path === '/movies' ? <Movies {...props} moviesArray={MoviesArray} resStatus={requestStatus} likedMovies={likedMovies} deleteMovies={deleteMovies} /> : <></>}
-            {props.path === '/saved-movies' ? <SavedMovies {...props} /> : <></>}
+            {props.path === '/movies' ? <Movies {...props} moviesArray={MoviesArray} resStatus={requestStatus} likedMovies={likedMovies} deleteMovies={deleteMovies}
+                isShortFilms={isShortFilms} searchInput={searchInput} /> : <></>}
+            {props.path === '/saved-movies' ? <Movies {...props} moviesArray={savedMoviesArray} resStatus={requestStatus} likedMovies={likedMovies} deleteMovies={deleteMovies}
+                isShortFilms={isShortFilms} searchInput={searchInput} /> : <></>}
             <Footer />
         </>
     );

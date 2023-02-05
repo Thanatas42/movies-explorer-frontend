@@ -6,28 +6,20 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import { ApiContex } from '../../context/ApiContex';
-import { SavedMoviesArrayContex } from '../../context/SavedMoviesArrayContex';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import Movies from '../Movies/Movies';
 import Error from '../ErrorPage/ErrorPage';
 import Header from '../Header/Header';
-import SavedMovies from '../SavedMovies/SavedMovies';
 import Navigation from '../Navigation/Navigation';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import MoviesBlock from "../MoviesBlock/MoviesBlock";
 import createApi from "../../utils/MainApi";
 import * as Auth from '../../utils/Auth';
-import * as MoviesApi from '../../utils/MoviesApi';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
   const [api, setApi] = useState(null);
   const [isNavigationPopupOpen, setNavigationPopupOpen] = useState(false);
-  const [MoviesArray, setMoviesArray] = useState([]);
-  const [savedMoviesArray, setSavedMoviesArray] = useState([]);
-  const [isShortFilms, setIsShortFilms] = useState(localStorage.getItem('isShortFilms') ? true : false);
   const [currentUser, setCurrentUser] = useState({ userName: "", userEmail: "", userId: "" });
-  const [resStatus, setResStatus] = useState(false);
   const history = useHistory();
   const location = useLocation();
 
@@ -101,46 +93,43 @@ function App() {
   return (
     <>
       <ApiContex.Provider value={api}>
-        <SavedMoviesArrayContex.Provider value={savedMoviesArray}>
-          <CurrentUserContext.Provider value={currentUser}>
-            <Header LogOn={loggedIn} onOpen={handleNavigationClick} />
-            <Switch>
-              <Route exact path="/">
-                <Main />
-              </Route>
+        <CurrentUserContext.Provider value={currentUser}>
+          <Header LogOn={loggedIn} onOpen={handleNavigationClick} />
+          <Switch>
+            <Route exact path="/">
+              <Main />
+            </Route>
 
-              <ProtectedRoute path={"/movies"} component={MoviesBlock} loggedIn={loggedIn} />
+            <ProtectedRoute path="/movies" component={MoviesBlock} loggedIn={loggedIn} />
 
-              <ProtectedRoute path="/saved-movies" component={MoviesBlock} loggedIn={loggedIn} resStatus={resStatus}
-                isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} setResStatus={setResStatus} savedMoviesArray={savedMoviesArray} />
+            <ProtectedRoute path="/saved-movies" component={MoviesBlock} loggedIn={loggedIn} />
 
-              <ProtectedRoute path="/profile" component={Profile} onSignOut={onSignOut}
-                handleUpdateUser={handleUpdateUser} setCurrentUser={setCurrentUser} loggedIn={loggedIn} />
+            <ProtectedRoute path="/profile" component={Profile} onSignOut={onSignOut}
+              handleUpdateUser={handleUpdateUser} setCurrentUser={setCurrentUser} loggedIn={loggedIn} />
 
-              <Route path="/signup">
-                <Register onReg={onReg} onLog={onLog} />
-              </Route>
+            <Route path="/signup">
+              <Register onReg={onReg} onLog={onLog} />
+            </Route>
 
-              <Route path="/signin">
-                <Login onLog={onLog} />
-              </Route>
+            <Route path="/signin">
+              <Login onLog={onLog} />
+            </Route>
 
-              <Route path="*">
-                <Error errCode="404" errName="Страница не найдена" />
-              </Route>
+            <Route path="*">
+              <Error errCode="404" errName="Страница не найдена" />
+            </Route>
 
-              <Route>
-                {loggedIn ? (
-                  <Redirect to={location.pathname} />
-                ) : (
-                  <Redirect to="/" />
-                )}
-              </Route>
-            </Switch>
+            <Route>
+              {loggedIn ? (
+                <Redirect to={location.pathname} />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+          </Switch>
 
-            <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
-          </CurrentUserContext.Provider>
-        </SavedMoviesArrayContex.Provider>
+          <Navigation isOpen={isNavigationPopupOpen} onClose={closeAllPopups} />
+        </CurrentUserContext.Provider>
       </ApiContex.Provider>
     </>
   );

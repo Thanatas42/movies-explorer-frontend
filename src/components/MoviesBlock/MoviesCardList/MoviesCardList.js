@@ -9,11 +9,11 @@ function MoviesCardList(props) {
     const [moviesToShow, setMoviesToShow] = useState([]);
     let { drawingСards, moreCountCards } = resizeEvent();
 
-
     useEffect(() => {
         if (props.moviesArray !== []) {
             let sortResult = props.moviesArray;
-            if (props.isShortFilms) {
+            
+            if (props.isSearch) {
                 const regex = RegExp(`${props.searchInput}`, 'gi');
 
                 sortResult = sortResult.filter((elem) => {
@@ -25,15 +25,12 @@ function MoviesCardList(props) {
             setMoviesToMemory(sortResult);
             setMoviesToShow(sortResult.slice(0, drawingСards));
         }
-    }, [props.moviesArray, drawingСards, props.isShortFilms, props.searchInput]);
-
-
+    }, [props.moviesArray, drawingСards, props.isShortFilms, props.searchInput, props.isSearch]);
 
     function handleShowMorePosts() {
-        const slicedMovies = moviesToMemory.slice(moviesToShow.length, moviesToShow.length + moreCountCards);
+        let slicedMovies = moviesToMemory.slice(moviesToShow.length, moviesToShow.length + moreCountCards);
         setMoviesToShow([...moviesToShow, ...slicedMovies]);
     };
-
 
     return (
         <>

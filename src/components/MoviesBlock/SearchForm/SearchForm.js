@@ -4,10 +4,16 @@ function SearchForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        props.setIsSearch(true);
     }
 
     function handleChange(e) {
         props.setSearchInput(e.target.value);
+
+        if(e.target.value === '') {
+            props.setIsSearch(false);
+        }
     }
 
     function handleSwitch() {
